@@ -7,18 +7,28 @@ import LoadingDots from 'components/loading-dots';
 import { ProductVariant } from 'lib/ecwid/types';
 import { useSearchParams } from 'next/navigation';
 import { useFormState, useFormStatus } from 'react-dom';
+import { addProductToCart } from 'store/cart/cartSlice';
+import { useAppDispatch } from '../../store/store';
 
 function SubmitButton({
   availableForSale,
-  selectedVariantId
+  selectedVariantId,
+  variants
 }: {
   availableForSale: boolean;
   selectedVariantId: string | undefined;
+  variants: ProductVariant[];
 }) {
   const { pending } = useFormStatus();
   const buttonClasses =
     'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white';
   const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
+  const dispatch = useAppDispatch();
+
+  const addProduct = (e: React.FormEvent<HTMLButtonElement>) => {
+    if (pending) e.preventDefault();
+    dispatch(addProductToCart(variants[0]));
+  };
 
   if (!availableForSale) {
     return (
@@ -34,6 +44,9 @@ function SubmitButton({
         aria-label="Please select an option"
         aria-disabled
         className={clsx(buttonClasses, disabledClasses)}
+        onClick={(e: React.FormEvent<HTMLButtonElement>) => {
+          addProduct(e);
+        }}
       >
         <div className="absolute left-0 ml-4">
           <PlusIcon className="h-5" />
@@ -46,7 +59,7 @@ function SubmitButton({
   return (
     <button
       onClick={(e: React.FormEvent<HTMLButtonElement>) => {
-        if (pending) e.preventDefault();
+        addProductToCart(e);
       }}
       aria-label="Add to cart"
       aria-disabled={pending}
@@ -79,14 +92,20 @@ export function AddToCart({
     )
   );
   const selectedVariantId = variant?.id || defaultVariantId;
-  const actionWithVariant = formAction.bind(null, selectedVariantId);
+  // const actionWithVariant = formAction.bind(null, selectedVariantId);
 
   return (
-    <form action={actionWithVariant}>
-      <SubmitButton availableForSale={availableForSale} selectedVariantId={selectedVariantId} />
+    // <form action={actionWithVariant}>
+    <>
+      <SubmitButton
+        availableForSale={availableForSale}
+        selectedVariantId={selectedVariantId}
+        variants={variants}
+      />
       <p aria-live="polite" className="sr-only" role="status">
         {message}
       </p>
-    </form>
+    </>
+    // </form>
   );
 }

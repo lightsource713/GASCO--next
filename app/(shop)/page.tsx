@@ -1,7 +1,11 @@
 import { Carousel } from 'components/carousel';
 import { ThreeItemGrid } from 'components/grid/three-items';
 import Footer from 'components/layout/footer';
+import OutOfStock from 'components/out-of-stock';
+import VideoSquare from 'components/video-square';
 import { Suspense } from 'react';
+import ReduxProvider from 'store/redux-provider';
+import { products } from '../../db/products';
 
 export const runtime = 'edge';
 
@@ -15,14 +19,18 @@ export const metadata = {
 
 export default async function HomePage() {
   return (
-    <>
-      <ThreeItemGrid />
-      <Suspense>
-        <Carousel />
+    <ReduxProvider>
+      <>
+        <ThreeItemGrid />
         <Suspense>
-          <Footer />
+          {products.length !== 0 ? <VideoSquare /> : <OutOfStock />}
+
+          <Carousel />
+          <Suspense>
+            <Footer />
+          </Suspense>
         </Suspense>
-      </Suspense>
-    </>
+      </>
+    </ReduxProvider>
   );
 }
