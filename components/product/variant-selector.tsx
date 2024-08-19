@@ -21,25 +21,30 @@ type SelectedOptions = {
 export function VariantPrice({
   options,
   variants,
-  amount,
-  currencyCode
+  // amount,
+  currencyCode,
+  selectedOptions
 }: {
   options: ProductOption[];
   variants: ProductVariant[];
-  amount: string;
+  // amount: string;
   currencyCode: string;
+  selectedOptions:SelectedOptions[]
 }) {
+  let amount = '0'
   const searchParams = useSearchParams();
   const hasNoOptionsOrJustOneOption =
     !options.length || (options.length === 1 && options[0]?.values.length === 1);
-
   if (!hasNoOptionsOrJustOneOption) {
-    const variant = variants.find((variant: ProductVariant) =>
-      variant.selectedOptions.every(
-        (option) => option.value === searchParams.get(option.name.toLowerCase())
-      )
-    );
-
+    // const variant = variants.find((variant: ProductVariant) =>
+    //   variant.selectedOptions.every(
+    //     (option) => option.value === searchParams.get(option.name.toLowerCase())
+    //   )
+    // );
+    const combination = [{name:selectedOptions[0]?.name,value:selectedOptions[0]?.value},{name:selectedOptions[1]?.name,value:selectedOptions[1]?.value}]
+    const variant = variants.find(item=>{
+      return JSON.stringify(item.selectedOptions) === JSON.stringify(combination)
+    })
     if (variant) {
       amount = `${variant?.price}`;
     }
@@ -94,6 +99,15 @@ export function VariantSelector({
           name,
           value
         });
+      }else{
+        const index = optionData.findIndex((item,index)=>{
+          return item.name == name
+        })
+        optionData[index] = {
+          id: `${index+1}`,
+          name: name,
+          value: value
+        }
       }
     }
     setSelectedOptions(optionData);
@@ -108,7 +122,6 @@ export function VariantSelector({
       {}
     )
   }));
-  // console.log("combinations->",combinations)
   return options.map((option) => (
     <dl className="mb-8" key={option.id}>
       <dt className="mb-4 text-sm uppercase tracking-wide">{option.name}</dt>
@@ -143,19 +156,9 @@ export function VariantSelector({
               ([key, value]) => combination[key] === value && combination.availableForSale
             )
           );
-
-          // The option is active if it's in the url params.
-          // const isActive = searchParams.get(optionNameLowerCase) === value;
-          // const isActive = false
-          const isActive = selectedOptions.find((option) => {
-            return (
-              option.name == isAvailableForSale?.name &&
-              (option.name == option.value) == isAvailableForSale?.value
-            );
-          });
-          console.log('isActive->', isActive);
-          // console.log("isActive->",isActive)
-          // console.log("isAvailableForSale->",isAvailableForSale)
+          const isActive = selectedOptions.find(option=>{
+            return option.value == value
+          })
 
           return (
             <button
@@ -168,11 +171,12 @@ export function VariantSelector({
               }}
               title={`${option.name} ${value}${!isAvailableForSale ? ' (Out of Stock)' : ''}`}
               className={clsx(
-                'flex min-w-[48px] items-center justify-center rounded-full border bg-neutral-100 px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900',
+                'flex min-w-[48px] items-center justify-center rounded-full border bg-neutral-100 px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900 cursor-pointer',
+                
                 {
                   'cursor-default ring-2 ring-blue-600': isActive,
-                  'ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 ':
-                    !isActive && isAvailableForSale,
+                  // 'ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 ':
+                  //   !isActive && isAvailableForSale,
                   'relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 ring-1 ring-neutral-300 before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform dark:bg-neutral-900 dark:text-neutral-400 dark:ring-neutral-700 before:dark:bg-neutral-700':
                     !isAvailableForSale
                 }

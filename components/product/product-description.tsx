@@ -24,8 +24,9 @@ export default function ProductDescription({ product }: { product: Product }) {
           <VariantPrice
             options={product.options}
             variants={product.variants}
-            amount={product.priceRange.minVariantPrice.amount}
+            // amount={product.priceRange.minVariantPrice.amount}
             currencyCode={product.priceRange.minVariantPrice.currencyCode}
+            selectedOptions = {selectedOptions}
           />
         </div>
       </div>

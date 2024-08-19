@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useAppSelector } from '../store/store';
 
 const DialPad = () => {
   const [number, setNumber] = useState('');
+  const cart = useAppSelector((state) => state.cart.productsInCart);
+  console.log("Cart_>",cart)
 
   const handleButtonClick = (value: string) => {
     setNumber((prev) => prev + value);

@@ -35,7 +35,21 @@ function SubmitButton({
   const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
   const dispatch = useAppDispatch();
 
+  const isOptionSelected = ()=>{
+    const variant = variants.find(item=>{
+      const combination = [{name:selectedOptions[0]?.name,value:selectedOptions[0]?.value},{name:selectedOptions[1]?.name,value:selectedOptions[1]?.value}]
+      return JSON.stringify(item.selectedOptions) === JSON.stringify(combination)
+    })
+    if (variant){
+      return true
+    }else return false
+  }
+
   const addProduct = (e: React.FormEvent<HTMLButtonElement>) => {
+    const variant = variants.find(item=>{
+      const combination = [{name:selectedOptions[0]?.name,value:selectedOptions[0]?.value},{name:selectedOptions[1]?.name,value:selectedOptions[1]?.value}]
+      return JSON.stringify(item.selectedOptions) === JSON.stringify(combination)
+    })
     // if (pending) e.preventDefault();
     const optionData = selectedOptions.map((option) => {
       return {
@@ -50,12 +64,11 @@ function SubmitButton({
       product: product
     };
     const cartItem = {
-      id: product.id,
+      id: product.id+optionData[0]?.value+optionData[1]?.value,
       quantity: 1,
       cost: {
         totalAmount: {
-          amount: product.priceRange.maxVariantPrice.amount,
-          currentCode: 'sar'
+          amount: variant?.price,
         }
       },
       merchandise: merchandise,
@@ -65,11 +78,11 @@ function SubmitButton({
       // id:"CartId"+product.id,
       cost: {
         totalAmount: {
-          amount: product.priceRange.maxVariantPrice.amount,
+          amount: variant?.price,
           currentCode: 'sar'
         }
       },
-      totalQuantity: 1000,
+      totalQuantity: 1,
       lines: [cartItem]
     };
     dispatch(addProductToCart(cartData));
@@ -83,12 +96,13 @@ function SubmitButton({
     );
   }
 
-  if (!selectedVariantId) {
+  if (!isOptionSelected()) {
     return (
       <button
         aria-label="Please select an option"
         aria-disabled
-        className={clsx(buttonClasses, disabledClasses)}
+        disabled = {true}
+        className={clsx(buttonClasses,disabledClasses)}
         onClick={(e: React.FormEvent<HTMLButtonElement>) => {
           addProduct(e);
         }}

@@ -47,12 +47,7 @@ export const products = [
         height: 300,
         altText: 'I am picture 1'
       },
-      {
-        url: 'http://data.its.sa:3000/_next/image?url=%2Fimages%2Fcarbon.png&w=1080&q=75',
-        width: 300,
-        height: 300,
-        altText: 'I am picture 2'
-      }
+     
     ],
     variants: [
       {
@@ -131,39 +126,39 @@ export const products = [
             value: 'red'
           }
         ]
+      },
+      {
+        id: '2',
+        title: 'Product2 Variant2',
+        availableForSale: true,
+        price: 250,
+        selectedOptions: [
+          {
+            name: 'size',
+            value: 'medium'
+          },
+          {
+            name: 'color',
+            value: 'blue'
+          }
+        ]
+      },
+      {
+        id: '3',
+        title: 'Product2 Variant3',
+        availableForSale: true,
+        price: 350,
+        selectedOptions: [
+          {
+            name: 'size',
+            value: 'large'
+          },
+          {
+            name: 'color',
+            value: 'pink'
+          }
+        ]
       }
-      // {
-      //   id: '2',
-      //   title: 'Product2 Variant2',
-      //   availableForSale: true,
-      //   price: 250,
-      //   selectedOptions: [
-      //     {
-      //       name: 'size',
-      //       value: 'medium'
-      //     },
-      //     {
-      //       name: 'color',
-      //       value: 'blue'
-      //     }
-      //   ]
-      // },
-      // {
-      //   id: '3',
-      //   title: 'Product2 Variant3',
-      //   availableForSale: true,
-      //   price: 350,
-      //   selectedOptions: [
-      //     {
-      //       name: 'size',
-      //       value: 'large'
-      //     },
-      //     {
-      //       name: 'color',
-      //       value: 'pink'
-      //     }
-      //   ]
-      // }
     ],
     priceRange: {
       maxVariantPrice: {

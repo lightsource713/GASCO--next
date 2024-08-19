@@ -18,7 +18,7 @@ type MerchandiseSearchParams = {
   [key: string]: string;
 };
 
-export default function CartModal({ cart }: { cart: Cart | null }) {
+export default function CartModal({ cart }: { cart: Cart  }) {
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);
   const openCart = () => setIsOpen(true);
@@ -40,7 +40,17 @@ export default function CartModal({ cart }: { cart: Cart | null }) {
 
   const handleCheckOut = () => {
     router.push('/checkout');
+    setIsOpen(false)
   };
+
+  const getCartTotalAmount = ()=>{
+    let totalAmount = 0;
+    cart.lines.map(item=>{
+      totalAmount +=Number(item.cost.totalAmount.amount)
+    })
+
+    return String(totalAmount)
+  }
 
   return (
     <>
@@ -78,7 +88,7 @@ export default function CartModal({ cart }: { cart: Cart | null }) {
                 </button>
               </div>
 
-              {!cart || Object.keys(cart).length === 0 ? (
+              {Object.keys(cart).length===0||cart?.lines?.length === 0 ? (
                 <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
                   <ShoppingCartIcon className="h-16" />
                   <p className="mt-6 text-center text-2xl font-bold">Your cart is empty.</p>
@@ -132,9 +142,14 @@ export default function CartModal({ cart }: { cart: Cart | null }) {
                                   {item.merchandise.product.title}
                                 </span>
                                 {item.merchandise.title !== DEFAULT_OPTION ? (
-                                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                                    {item.merchandise.title}
-                                  </p>
+                                  <div className="text-sm text-neutral-500 dark:text-neutral-400">
+                                    {item.merchandise.selectedOptions.map((item,index)=>{
+                                      return (
+                                        <div key={index}>{item.name+":"+ item.value}</div>
+                                      )
+                                      // return item.name+":"+ item.value
+                                    })}
+                                  </div>
                                 ) : null}
                               </div>
                             </Link>
@@ -162,7 +177,7 @@ export default function CartModal({ cart }: { cart: Cart | null }) {
                       <p>Total</p>
                       <Price
                         className="text-right text-base text-black dark:text-white"
-                        amount={cart.cost?.totalAmount.amount}
+                        amount={getCartTotalAmount()}
                         currencyCode={cart.cost?.totalAmount.currencyCode}
                       />
                     </div>

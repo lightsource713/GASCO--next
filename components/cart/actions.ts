@@ -1,7 +1,7 @@
 'use server';
 
 import { TAGS } from 'lib/constants';
-import { addToCart, createCart, getCart, removeFromCart, updateCart } from 'lib/ecwid';
+import { createCart, getCart, removeFromCart, updateCart } from 'lib/ecwid';
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
@@ -15,8 +15,6 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
 
   if (!cartId || !cart) {
     cart = await createCart();
-    cartId = cart.id;
-    cookies().set('cartId', cartId);
   }
 
   if (!selectedVariantId) {
@@ -24,7 +22,6 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
   }
 
   try {
-    await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1 }]);
     revalidateTag(TAGS.cart);
   } catch (e) {
     return 'Error adding item to cart';

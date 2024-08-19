@@ -204,13 +204,9 @@ const reshapeOrder = (order: EcwidOrder): Cart => {
     }
 
     return {
-        id: order.id,
-        checkoutUrl: `/checkout?id=${order.id}`,
         totalQuantity: quantity,
         cost: {
-            subtotalAmount: reshapeAmountsPrice(order.amounts.subtotal),
             totalAmount: reshapeAmountsPrice(order.amounts.total),
-            totalTaxAmount: reshapeAmountsPrice(order.amounts.tax)
         },
         lines: lines
     };
@@ -464,22 +460,11 @@ export async function createCart(): Promise<Cart> {
     cookies().set(`ec-${store_id}-session`, res.body.sessionToken);
 
     return {
-        id: cartId,
-        sessionToken: res.body.sessionToken,
-        checkoutUrl: '',
         cost: {
-            subtotalAmount: {
-                amount: '',
-                currencyCode: ''
-            },
             totalAmount: {
                 amount: '',
                 currencyCode: ''
             },
-            totalTaxAmount: {
-                amount: '',
-                currencyCode: ''
-            }
         },
         lines: [],
         totalQuantity: 0
