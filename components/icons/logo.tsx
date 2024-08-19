@@ -1,15 +1,12 @@
-export default function LogoIcon(props: React.ComponentProps<'svg'>) {
+import Image from 'next/image';
+
+export default function LogoIcon() {
   return (
-    <img src="http://data.its.sa:3000/_next/image?url=%2Fimages%2Fgasco-logo-2.png&w=128&q=75"></img>
-    // <svg
-    //   xmlns="http://www.w3.org/2000/svg"
-    //   aria-label={`${process.env.SITE_NAME} logo`}
-    //   viewBox="0 0 32 28"
-    //   {...props}
-    //   className={clsx('h-4 w-4 fill-black dark:fill-white', props.className)}
-    // >
-    //   <path d="M21.5758 9.75769L16 0L0 28H11.6255L21.5758 9.75769Z" />
-    //   <path d="M26.2381 17.9167L20.7382 28H32L26.2381 17.9167Z" />
-    // </svg>
+    <Image
+      alt="logo image"
+      src="http://127.0.0.1:3000/assets/images/estwan-logo.png"
+      width={64}
+      height={64}
+    />
   );
 }

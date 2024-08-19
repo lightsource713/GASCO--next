@@ -1,17 +1,20 @@
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useAppSelector } from '../store/store';
+import { sendMobileNumber } from 'store/otp-verify/otpVerify';
+import { useAppDispatch } from '../store/store';
 
 const DialPad = () => {
   const [number, setNumber] = useState('');
-  const cart = useAppSelector((state) => state.cart.productsInCart);
-  console.log("Cart_>",cart)
+  const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleButtonClick = (value: string) => {
     setNumber((prev) => prev + value);
   };
 
   const handleSubmit = () => {
-    alert(`Number entered: ${number}`);
+    dispatch(sendMobileNumber(number))
+    router.push('/otpVerify')
   };
 
   const handleClear = () => {

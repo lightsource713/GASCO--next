@@ -4,7 +4,6 @@ import {
     Cart,
     CartItem,
     Collection,
-    EcwidAdjustedPrice,
     EcwidCart,
     EcwidCartItem,
     EcwidCheckout,
@@ -13,7 +12,6 @@ import {
     EcwidNode,
     EcwidOrder,
     EcwidPagedResult,
-    EcwidPrice,
     EcwidProductOption,
     EcwidRelatedProducts,
     EcwidVariation,
@@ -84,7 +82,7 @@ export async function ecwidFetch<T>({
 
         if (revalidate) {
             options.next = { ...options.next, ...{ revalidate: revalidate } };
-            console.log(options.next);
+            // console.log(options.next);
         }
 
         if (payload) {
@@ -127,7 +125,7 @@ export async function ecwidFetch<T>({
         }
 
         if (body.errors) {
-            console.log(body.errors);
+            // console.log(body.errors);
             throw body.errors[0];
         }
 
@@ -150,7 +148,7 @@ export async function ecwidFetch<T>({
 }
 
 export async function getStoreCurrencyCode(): Promise<string> {
-    let query = <Record<string, string | string[]>>{
+    const query = <Record<string, string | string[]>>{
         responseFields: 'formatsAndUnits(currency)'
     };
 
@@ -176,15 +174,6 @@ const reshapeImage = (img: EcwidMedia): Image => {
         altText: img.name || '',
         width: img.width,
         height: img.height
-    };
-};
-
-const reshapeAdjustedPrice = (price: EcwidAdjustedPrice): Money => reshapePrice(price.value);
-
-const reshapePrice = (price: EcwidPrice): Money => {
-    return {
-        amount: price.withTax.toString(),
-        currencyCode: price.currency.code
     };
 };
 
@@ -290,8 +279,8 @@ const reshapeCollection = (node: EcwidNode): Collection | undefined => {
         return undefined;
     }
 
-    let metaTitle = node.seoTitle?.toString() || node.name;
-    let metaDescription = node.seoDescription?.toString() || node.description;
+    const metaTitle = node.seoTitle?.toString() || node.name;
+    const metaDescription = node.seoDescription?.toString() || node.description;
 
     return {
         handle: node.id.toString(),
@@ -318,15 +307,15 @@ const reshapeProduct = (
         return undefined;
     }
 
-    let nodeHandle = encodeURIComponent(node.url.replace(/^\/+|\/+$/g, ''));
+    const nodeHandle = encodeURIComponent(node.url.replace(/^\/+|\/+$/g, ''));
 
     let minPrice = 0;
     let maxPrice = 0;
 
-    let metaTitle = node.seoTitle?.toString() || node.name;
-    let metaDescription = node.seoDescription?.toString() || node.description;
+    const metaTitle = node.seoTitle?.toString() || node.name;
+    const metaDescription = node.seoDescription?.toString() || node.description;
 
-    let product = <Product>{
+    const product = <Product>{
         id: `${node.id}`,
         handle: nodeHandle,
         title: node.name,
@@ -359,10 +348,10 @@ const reshapeProduct = (
         ];
     }
 
-    let options = node.options as EcwidProductOption[];
-    let variants = node.combinations as EcwidVariation[];
+    const options = node.options as EcwidProductOption[];
+    const variants = node.combinations as EcwidVariation[];
 
-    let variantsCombinations = <ProductVariant[]>[];
+    const variantsCombinations = <ProductVariant[]>[];
 
     if (options.length > 0) {
         product.options = options.map((attr) => ({
@@ -372,10 +361,10 @@ const reshapeProduct = (
         }));
 
         // api doesn't return all options combinations, so we shuffle that handly
-        let allOptions = options.map((attr) =>
+        const allOptions = options.map((attr) =>
             attr.choices.map((val) => ({ name: attr.name, value: val.text }))
         );
-        let optionsCombinations = cartesianProduct(...allOptions);
+        const optionsCombinations = cartesianProduct(...allOptions);
 
         if (optionsCombinations.length > 0) {
             optionsCombinations.forEach((options) => {
@@ -393,7 +382,7 @@ const reshapeProduct = (
 
     if (variants.length > 0 && variantsCombinations.length > 0) {
         variants.forEach((variant) => {
-            let keys: string[] = variant.options.map(({ name, value }) => `${name}:${value}`);//.join('|');
+            const keys: string[] = variant.options.map(({ name, value }) => `${name}:${value}`);//.join('|');
 
             variantsCombinations.map((combination) => {
                 if (!keys.find(x => combination.id.indexOf(x) == -1)) {
@@ -417,7 +406,7 @@ const reshapeProduct = (
 
     product.images = [] as EcwidMedia[];
 
-    let media = node.galleryImages as EcwidMedia[];
+    const media = node.galleryImages as EcwidMedia[];
     if (media.length > 0) {
         var images = media.map((m) => reshapeImage(m));
         product.images = images;
@@ -455,8 +444,6 @@ export async function createCart(): Promise<Cart> {
         }
     });
 
-    let cartId = res.body.checkoutId;
-
     cookies().set(`ec-${store_id}-session`, res.body.sessionToken);
 
     return {
@@ -482,16 +469,16 @@ export async function addToCart(
     var line = lines[0];
     var idParts = line!.merchandiseId.split('|');
 
-    let productId = idParts[0];
-    let sessionToken = cookies().get(`ec-${store_id}-session`)?.value;
+    const productId = idParts[0];
+    const sessionToken = cookies().get(`ec-${store_id}-session`)?.value;
 
-    let selectedOptions = {} as any;
+    const selectedOptions = {} as any;
 
     if (idParts.length > 1) {
         idParts.shift();
 
         idParts.map((part) => {
-            let option = part.split(':');
+            const option = part.split(':');
             selectedOptions[`${option[0]}`] = { type: 'DROPDOWN', choice: `${option[1]}` };
         });
     }
@@ -527,11 +514,11 @@ export async function removeFromCart(cartId: string, lineIds: string[]): Promise
     // which looking at the code is the case. May need to keep
     // track to see if it ever gets implemented that multiple
     // items can be removed at once.
-    let line = lineIds[0];
-    let idParts = line!.split('|');
-    let productId = idParts[0];
+    const line = lineIds[0];
+    const idParts = line!.split('|');
+    const productId = idParts[0];
 
-    let sessionToken = cookies().get(`ec-${store_id}-session`)?.value;
+    const sessionToken = cookies().get(`ec-${store_id}-session`)?.value;
 
     let selectedOptions = {} as any | undefined;
 
@@ -539,7 +526,7 @@ export async function removeFromCart(cartId: string, lineIds: string[]): Promise
         idParts.shift();
 
         idParts.map((part) => {
-            let option = part.split(':');
+            const option = part.split(':');
             selectedOptions[`${option[0]}`] = { type: 'DROPDOWN', choice: `${option[1]}` };
         });
     } else {
@@ -571,21 +558,21 @@ export async function updateCart(
     cartId: string,
     lines: { id: string; merchandiseId: string; quantity: number }[]
 ): Promise<Cart> {
-    let sessionToken = cookies().get(`ec-${store_id}-session`)?.value;
+    const sessionToken = cookies().get(`ec-${store_id}-session`)?.value;
 
     var line = lines[0];
     var idParts = line!.merchandiseId.split('|');
-    let productId = idParts[0];
+    const productId = idParts[0];
 
     await removeFromCart(cartId, [line!.merchandiseId]);
 
-    let selectedOptions = {} as any;
+    const selectedOptions = {} as any;
 
     if (idParts.length > 1) {
         idParts.shift();
 
         idParts.map((part) => {
-            let option = part.split(':');
+            const option = part.split(':');
             selectedOptions[`${option[0]}`] = { type: 'DROPDOWN', choice: `${option[1]}` };
         });
     }
@@ -616,8 +603,8 @@ export async function updateCart(
     return reshapeOrder(res.body.checkout);
 }
 
-export async function getCart(cartId: string): Promise<Cart | undefined> {
-    let sessionToken = cookies().get(`ec-${store_id}-session`)?.value;
+export async function getCart(): Promise<Cart | undefined> {
+    const sessionToken = cookies().get(`ec-${store_id}-session`)?.value;
 
     if (!sessionToken) {
         return undefined;
@@ -649,7 +636,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
         return [];
     }
 
-    let query = <Record<string, string | string[]>>{
+    const query = <Record<string, string | string[]>>{
         parent: '0',
         limit: '2',
         cleanUrls: 'true',
@@ -663,7 +650,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
         query: query
     });
 
-    let menu =
+    const menu =
         res.body?.items?.map((collection) => ({
             path: `${collection.url}`,
             title: collection.name
@@ -679,7 +666,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
 }
 
 export async function getCollections(): Promise<Collection[]> {
-    let baseUrl = '/search';
+    const baseUrl = '/search';
 
     const res = await ecwidFetch<EcwidPagedResult<EcwidNode>>({
         method: 'GET',
@@ -710,7 +697,7 @@ export async function getCollections(): Promise<Collection[]> {
 }
 
 export async function getCollection(handle: string): Promise<Collection | undefined> {
-    let categoryId = handle.replace(/.*(?<=-c)/, '');
+    const categoryId = handle.replace(/.*(?<=-c)/, '');
 
     const res = await ecwidFetch<EcwidNode>({
         method: 'GET',
@@ -723,20 +710,18 @@ export async function getCollection(handle: string): Promise<Collection | undefi
 
 export async function getCollectionProducts({
     collection,
-    reverse,
-    sortKey
 }: {
     collection: string;
     reverse?: boolean;
     sortKey?: string;
 }): Promise<Product[]> {
-    let query = <Record<string, string | string[]>>{
+    const query = <Record<string, string | string[]>>{
         enabled: 'true',
         cleanUrls: 'true',
         baseUrl: '/'
     };
 
-    let categoryId = collection.replace(/.*(?<=-c)/, '');
+    const categoryId = collection.replace(/.*(?<=-c)/, '');
 
     if (collection != 'hidden-homepage-carousel' && collection != 'hidden-homepage-featured-items') {
         query.categories = `${categoryId}`;
@@ -790,7 +775,7 @@ export async function getProducts({
 }
 
 export async function getProduct(handle: string): Promise<Product | undefined> {
-    let productId = handle.replace(/.*(?<=-p)/, '');
+    const productId = handle.replace(/.*(?<=-p)/, '');
 
     const res = await ecwidFetch<EcwidNode>({
         method: 'GET',
@@ -809,7 +794,7 @@ export async function getProductRecommendations(productId: string): Promise<Prod
         tags: [TAGS.products]
     });
 
-    let queryParams = <Record<string, string | string[]>>{};
+    const queryParams = <Record<string, string | string[]>>{};
 
     const relates = <EcwidRelatedProducts>(res.body.relatedProducts || {});
 
@@ -818,7 +803,7 @@ export async function getProductRecommendations(productId: string): Promise<Prod
     }
 
     if (relates.relatedCategory.enabled) {
-        let relatedCategory = `${relates.relatedCategory.categoryId}`;
+        const relatedCategory = `${relates.relatedCategory.categoryId}`;
         queryParams.categories = 0 ? 'home' : relatedCategory;
 
         queryParams.includeProductsFromSubcategories = 'true';

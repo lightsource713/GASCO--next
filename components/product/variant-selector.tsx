@@ -3,8 +3,7 @@
 import clsx from 'clsx';
 import Price from 'components/price';
 import { Product, ProductOption, ProductVariant } from 'lib/ecwid/types';
-import { createUrl } from 'lib/utils';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 type Combination = {
   id: string;
@@ -32,7 +31,6 @@ export function VariantPrice({
   selectedOptions:SelectedOptions[]
 }) {
   let amount = '0'
-  const searchParams = useSearchParams();
   const hasNoOptionsOrJustOneOption =
     !options.length || (options.length === 1 && options[0]?.values.length === 1);
   if (!hasNoOptionsOrJustOneOption) {
@@ -70,8 +68,6 @@ export function VariantSelector({
   selectedOptions: SelectedOptions[];
   setSelectedOptions: (value: SelectedOptions[]) => void;
 }) {
-  const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const hasNoOptionsOrJustOneOption =
@@ -82,7 +78,7 @@ export function VariantSelector({
   }
 
   const setOptions = (id: string, name: string, value: string) => {
-    let optionData = [...selectedOptions];
+    const optionData = [...selectedOptions];
     if (optionData.length == 0) {
       optionData.push({
         id,
@@ -100,7 +96,7 @@ export function VariantSelector({
           value
         });
       }else{
-        const index = optionData.findIndex((item,index)=>{
+        const index = optionData.findIndex((item)=>{
           return item.name == name
         })
         optionData[index] = {
@@ -128,24 +124,8 @@ export function VariantSelector({
       <dd className="flex flex-wrap gap-3">
         {option.values.map((value) => {
           const optionNameLowerCase = option.name.toLowerCase();
-
-          // Base option params on current params so we can preserve any other param state in the url.
           const optionSearchParams = new URLSearchParams(searchParams.toString());
-
-          // Update the option params using the current option to reflect how the url *would* change,
-          // if the option was clicked.
           optionSearchParams.set(optionNameLowerCase, value);
-          const optionUrl = createUrl(pathname, optionSearchParams);
-
-          // In order to determine if an option is available for sale, we need to:
-          //
-          // 1. Filter out all other param state
-          // 2. Filter out invalid options
-          // 3. Check if the option combination is available for sale
-          //
-          // This is the "magic" that will cross check possible variant combinations and preemptively
-          // disable combinations that are not available. For example, if the color gray is only available in size medium,
-          // then all other sizes should be disabled.
           const filtered = Array.from(optionSearchParams.entries()).filter(([key, value]) =>
             options.find(
               (option) => option.name.toLowerCase() === key && option.values.includes(value)

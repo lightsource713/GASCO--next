@@ -23,6 +23,12 @@ module.exports = withNextVideo({
         protocol: 'http',
         hostname: 'data.its.sa',
         pathname: '/images/**'
+      },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        port: '3000',
+        pathname: '/assets/images/**'
       }
     ]
   },
@@ -36,9 +42,3 @@ module.exports = withNextVideo({
     ];
   }
 });
-
-module.exports = {
-  images: {
-    domains: ['data.its.sa'] // Add your allowed domains here
-  }
-};

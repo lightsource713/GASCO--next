@@ -2,12 +2,10 @@
 
 import { PlusIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { addItem } from 'components/cart/actions';
 import { Product, ProductVariant } from 'lib/ecwid/types';
 import { useSearchParams } from 'next/navigation';
-import { useFormState } from 'react-dom';
 import { addProductToCart } from 'store/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useAppDispatch } from '../../store/store';
 
 type SelectedOptions = {
   id: string;
@@ -17,7 +15,6 @@ type SelectedOptions = {
 
 function SubmitButton({
   availableForSale,
-  selectedVariantId,
   variants,
   selectedOptions,
   product
@@ -28,7 +25,7 @@ function SubmitButton({
   selectedOptions: SelectedOptions[];
   product: Product;
 }) {
-  const cart = useAppSelector((state) => state.cart.productsInCart);
+  // const cart = useAppSelector((state) => state.cart.productsInCart);
   // const { pending } = useFormStatus();
   const buttonClasses =
     'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white';
@@ -45,7 +42,7 @@ function SubmitButton({
     }else return false
   }
 
-  const addProduct = (e: React.FormEvent<HTMLButtonElement>) => {
+  const addProduct = () => {
     const variant = variants.find(item=>{
       const combination = [{name:selectedOptions[0]?.name,value:selectedOptions[0]?.value},{name:selectedOptions[1]?.name,value:selectedOptions[1]?.value}]
       return JSON.stringify(item.selectedOptions) === JSON.stringify(combination)
@@ -103,8 +100,8 @@ function SubmitButton({
         aria-disabled
         disabled = {true}
         className={clsx(buttonClasses,disabledClasses)}
-        onClick={(e: React.FormEvent<HTMLButtonElement>) => {
-          addProduct(e);
+        onClick={() => {
+          addProduct();
         }}
       >
         <div className="absolute left-0 ml-4">
@@ -117,8 +114,8 @@ function SubmitButton({
 
   return (
     <button
-      onClick={(e: React.FormEvent<HTMLButtonElement>) => {
-        addProduct(e);
+      onClick={() => {
+        addProduct();
       }}
       aria-label="Add to cart"
       // aria-disabled={pending}
@@ -147,7 +144,6 @@ export function AddToCart({
   selectedOptions: SelectedOptions[];
   product: Product;
 }) {
-  const [message, formAction] = useFormState(addItem, null);
   const searchParams = useSearchParams();
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const variant = variants.find((variant: ProductVariant) =>
@@ -168,9 +164,6 @@ export function AddToCart({
         selectedOptions={selectedOptions}
         product={product}
       />
-      <p aria-live="polite" className="sr-only" role="status">
-        {message}
-      </p>
     </>
     // </form>
   );

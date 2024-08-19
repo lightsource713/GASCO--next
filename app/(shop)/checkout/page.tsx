@@ -2,10 +2,9 @@
 
 // import { useState } from 'react';
 // import { useAppSelector } from '../../../store/store';
-import DialPad from "components/dialPad";
+import DialPad from "components/dial-pad";
 
 const loginPad = () => {
-  console.log("loginPad is running")
   return (
     <DialPad />
   );
