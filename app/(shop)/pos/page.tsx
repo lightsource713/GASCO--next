@@ -17,11 +17,11 @@ export default function POSCardSwipe() {
         if(storePayment.isConfirmed){
             setTimeout(() => {
                 router.push('/thank')
-              }, 50000)
+              }, 10000)
         }else{
             setTimeout(() => {
                 router.push('/declined')
-              }, 50000)
+              }, 10000)
         }
     },[storePayment.isConfirmed])
 

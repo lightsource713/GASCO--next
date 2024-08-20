@@ -64,7 +64,7 @@ const router = useRouter();
               <div className="flex-1 ml-4">
                 <h3 className="text-lg">{product.name}</h3>
                 <p>Quantity: {product.count}</p>
-                <p>Price: ${product.price.toFixed(2)}</p>
+                <p>Price: SAR {product.price.toFixed(2)}</p>
               </div>
             </div>
           ))}

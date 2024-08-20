@@ -71,20 +71,20 @@ const OTPpad = () => {
 
 
   return (
-    <div className="mt-10 flex flex-col items-center">
+    <div className="mt-10 flex flex-col items-center w-200">
       <input
         type="text"
         value={number}
         readOnly
         placeholder="Please enter OTP"
-        className="mb-3 w-60 border-b-2 p-2 text-center"
+        className="mb-3 w-150 border-b-2 p-2 text-center"
       />
       <div className="mb-3 grid grid-cols-3 gap-2">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'].map((item) => (
           <button
             key={item}
             onClick={() => handleButtonClick(item.toString())}
-            className="h-16 w-16 rounded-md bg-gray-300 text-2xl shadow-md"
+            className="h-16 w-16 rounded-full bg-gray-300 text-2xl shadow-md"
           >
             {item}
           </button>

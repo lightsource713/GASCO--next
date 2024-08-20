@@ -37,7 +37,7 @@ export const defaultImage = {
 export const DEFAULT_OPTION = 'Default';
 export const HIDDEN_PRODUCT_TAG = 'hidden'; // Required
 
-export const DEFAULT_CURRENCY_CODE = 'USD';
+export const DEFAULT_CURRENCY_CODE = 'SAR';
 
 export const ECWID_API_URL = 'https://app.ecwid.com/api/v3/';
 export const ECWID_STOREFRONT_API_URL = 'https://app.ecwid.com/storefront/api/v1/';

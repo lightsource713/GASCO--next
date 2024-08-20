@@ -5,8 +5,8 @@ export default function LogoIcon() {
     <Image
       alt="logo image"
       src="http://127.0.0.1:3000/assets/images/estwan-logo.png"
-      width={64}
-      height={64}
+      width={140}
+      height={140}
     />
   );
 }

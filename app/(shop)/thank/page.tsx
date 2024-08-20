@@ -9,7 +9,7 @@ export default function ThankYou() {
     console.log("replace cylinder")
   }
   return (
-    <div className="flex items-center justify-center min-h-screen min-h-96 text-white">
+    <div className="flex items-center justify-center  min-h-96 text-white">
       <div className="flex flex-col items-center justify-center text-center">
         <h1 className="text-6xl font-bold bg-green-300 text-center p-4 rounded-lg drop-shadow-lg shadow-black">
           Thank You!

@@ -1,28 +1,35 @@
 'use client';
-
 import { useRouter } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 
-const VideoSquare = () => {
+const FullScreenVideo = () => {
+  const videoRef = useRef(null);
   const router = useRouter();
 
-  const goSearchPage = () => {
-    router.push('/search');
-  };
+  useEffect(() => {
+    const handleTap = () => {
+      router.push('/search');
+    };
+
+    window.addEventListener('click', handleTap);
+
+    return () => {
+      window.removeEventListener('click', handleTap);
+    };
+  }, [router]);
 
   return (
-    <div style={{ width: '100%', height: 500, marginTop: 20 }} className="text-center">
-      <video preload="auto" controls style={{ width: '100%', height: '100%' }}>
-        <source src="/assets/video/2.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <button
-        className="relative mt-3 w-60 items-center rounded-full bg-blue-600 p-4 tracking-wide text-white hover:opacity-90"
-        onClick={() => goSearchPage()}
-      >
-        Start
-      </button>
+    <div className="fixed inset-0 z-50 overflow-hidden flex items-center justify-center bg-black">
+      <video
+        ref={videoRef}
+        className="w-full h-full object-cover"
+        src={'/assets/video/2.mp4'}
+        autoPlay
+        loop
+        muted
+      />
     </div>
   );
 };
 
-export default VideoSquare;
+export default FullScreenVideo;
