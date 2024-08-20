@@ -4,7 +4,7 @@ import Price from 'components/price';
 import { DEFAULT_OPTION } from 'lib/constants';
 import type { Cart } from 'lib/ecwid/types';
 import { createUrl } from 'lib/utils';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment, useEffect, useRef, useState } from 'react';
 // import { useAppSelector } from 'store/store';
@@ -125,7 +125,7 @@ export default function CartModal({ cart }: { cart: Cart  }) {
                               className="z-30 flex flex-row space-x-4"
                             >
                               <div className="relative h-16 w-16 cursor-pointer overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
-                                <Image
+                                {/* <Image
                                   className="h-full w-full object-cover"
                                   width={64}
                                   height={64}
@@ -135,6 +135,14 @@ export default function CartModal({ cart }: { cart: Cart  }) {
                                   }
                                   src={item.merchandise.product.featuredImage.url}
                                   priority
+                                /> */}
+                                <img
+                                  src={item.merchandise.product.featuredImage.url}
+                                  alt={
+                                    item.merchandise.product.featuredImage.altText ||
+                                    item.merchandise.product.title
+                                  }
+                                  className="h-full w-full object-cover" // Use object-contain to ensure the whole image is shown
                                 />
                               </div>
 

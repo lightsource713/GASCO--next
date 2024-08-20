@@ -6,10 +6,12 @@ export function GridTileImage({
   isInteractive = true,
   active,
   label,
+  srcUrl,
   ...props
 }: {
   isInteractive?: boolean;
   active?: boolean;
+  srcUrl:string;
   label?: {
     title: string;
     amount: string;
@@ -30,12 +32,17 @@ export function GridTileImage({
     >
       {props.src ? (
         // eslint-disable-next-line jsx-a11y/alt-text -- `alt` is inherited from `props`, which is being enforced with TypeScript
-        <Image
-          priority
-          className={clsx('relative h-full w-full object-contain', {
-            'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
-          })}
-          {...props}
+        // <Image
+        //   priority
+        //   className={clsx('relative h-full w-full object-contain', {
+        //     'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
+        //   })}
+        //   {...props}
+        // />
+        <img
+          src={srcUrl}
+          alt={props.alt}
+          className="w-full h-full object-contain bg-black" // Use object-contain to ensure the whole image is shown
         />
       ) : null}
       {label ? (

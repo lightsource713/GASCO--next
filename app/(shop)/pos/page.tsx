@@ -1,5 +1,4 @@
 "use client"
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { confirmPayment } from 'store/payment/payment';
@@ -32,13 +31,18 @@ export default function POSCardSwipe() {
           Please follow instruction on the POS card swipe.
         </h1>
         <div className="w-32 h-32 relative">
-          <Image 
+          {/* <Image 
             src="http://data.its.sa:3000/assets/images/pos.png" 
             alt="POS Card Swipe" 
             fill
             className="object-contain"
             priority
             sizes="(max-width: 640px) 100vw, 36px"
+          /> */}
+          <img
+            src="http://data.its.sa:3000/assets/images/pos.png" 
+            alt="POS Card Swipe" 
+            className="object-contain" // Use object-contain to ensure the whole image is shown
           />
         </div>
       </div>

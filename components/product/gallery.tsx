@@ -3,7 +3,6 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { GridTileImage } from 'components/grid/tile';
 import { createUrl } from 'lib/utils';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 
@@ -30,13 +29,18 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
     <>
       <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
         {images[imageIndex] && (
-          <Image
-            className="h-full w-full object-contain"
-            fill
-            sizes="(min-width: 1024px) 66vw, 100vw"
-            alt={images[imageIndex]?.altText as string}
-            src={images[imageIndex]?.src as string}
-            priority={true}
+          // <Image
+          //   className="h-full w-full object-contain"
+          //   fill
+          //   sizes="(min-width: 1024px) 66vw, 100vw"
+          //   alt={images[imageIndex]?.altText as string}
+          //   src={images[imageIndex]?.src as string}
+          //   priority={true}
+          // />
+          <img
+          src={images[imageIndex]?.src as string}
+          alt={images[imageIndex]?.altText as string}
+            className="h-full w-full object-contain" // Use object-contain to ensure the whole image is shown
           />
         )}
 
@@ -84,6 +88,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
                   <GridTileImage
                     alt={image.altText}
                     src={image.src}
+                    srcUrl = {image.src}
                     width={80}
                     height={80}
                     active={isActive}
