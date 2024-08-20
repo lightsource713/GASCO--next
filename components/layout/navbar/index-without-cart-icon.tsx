@@ -1,10 +1,8 @@
 import LogoSquare from 'components/logo-square';
-import { getMenu } from 'lib/ecwid';
 import Link from 'next/link';
 const { SITE_NAME } = process.env;
 
 export default async function NavbarWithoutCartIcon() {
-  const menu = await getMenu('next-js-frontend-header-menu');
 
   return (
     <nav className="relative flex items-center justify-between p-4 lg:px-6">

@@ -1,5 +1,3 @@
-'use client';
-
 import clsx from 'clsx';
 import Price from 'components/price';
 import { Product, ProductOption, ProductVariant } from 'lib/ecwid/types';
@@ -30,20 +28,40 @@ export function VariantPrice({
   currencyCode: string;
   selectedOptions:SelectedOptions[]
 }) {
+  const haveSameElements = (arr1:string[], arr2:string[])=>{
+    if (arr1.length !== arr2.length) {
+      return false;
+  }
+
+  // Sort both arrays
+  const sortedArr1 = arr1.slice().sort();
+  const sortedArr2 = arr2.slice().sort();
+
+  // Compare the sorted arrays element by element
+  for (let i = 0; i < sortedArr1.length; i++) {
+      if (sortedArr1[i] !== sortedArr2[i]) {
+          return false;
+      }
+  }
+
+  return true;
+  }
+
+
   let amount = '0'
   const hasNoOptionsOrJustOneOption =
     !options.length || (options.length === 1 && options[0]?.values.length === 1);
   if (!hasNoOptionsOrJustOneOption) {
-    // const variant = variants.find((variant: ProductVariant) =>
-    //   variant.selectedOptions.every(
-    //     (option) => option.value === searchParams.get(option.name.toLowerCase())
-    //   )
-    // );
-    const combination = [{name:selectedOptions[0]?.name,value:selectedOptions[0]?.value},{name:selectedOptions[1]?.name,value:selectedOptions[1]?.value}]
-    const variant = variants.find(item=>{
-      return JSON.stringify(item.selectedOptions) === JSON.stringify(combination)
+    const combination = selectedOptions.map(option=>{
+      return option.value
     })
-    if (variant) {
+     const variant = variants.find(item=>{
+      const variantComibination = item.selectedOptions.map(option=>{
+        return option.value
+      })
+      return haveSameElements(combination,variantComibination)
+    })
+     if (variant) {
       amount = `${variant?.price}`;
     }
   }

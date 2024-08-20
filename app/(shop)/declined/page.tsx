@@ -13,8 +13,8 @@ export default function Declined() {
           <Image 
             src="http://data.its.sa:3000/assets/images/declined.png" 
             alt="Declined" 
-            layout="fill" 
-            objectFit="contain" 
+            fill
+            className="object-contain"
             priority
           />
         </div>

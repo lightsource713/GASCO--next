@@ -2,7 +2,7 @@ export const products = [
   {
     id: '1',
     title: 'Full Carbon Fiber Cylinder',
-    description: 'A low alloy carbon steel with 3mm thickness.',
+    description: 'A compact and lightweight design.',
     featuredImage: {
       url: 'http://data.its.sa:3000/assets/images/carbon.png',
       width: 300,
@@ -17,21 +17,21 @@ export const products = [
       {
         id: '1',
         name: 'color',
-        values: ['yellow', 'blue']
+        values: ['blue']
       },
       {
         id: '2',
         name: 'size',
-        values: ['small', 'medium', 'large']
+        values: ['small', 'medium']
       }
     ],
     priceRange: {
       maxVariantPrice: {
-        amount: '150',
+        amount: '400',
         currencyCode: 'SAR'
       },
       minVariantPrice: {
-        amount: '100',
+        amount: '300',
         currencyCode: 'SAR'
       }
     },
@@ -46,23 +46,22 @@ export const products = [
         width: 300,
         height: 300,
         altText: 'I am picture 1'
-      },
-     
+      }
     ],
     variants: [
       {
         id: '1',
         title: 'Product1 Variant1',
         availableForSale: true,
-        price: 140,
+        price: 400,
         selectedOptions: [
           {
             name: 'color',
-            value: 'yellow'
+            value: 'blue'
           },
           {
             name: 'size',
-            value: 'large'
+            value: 'medium'
           }
         ]
       },
@@ -86,10 +85,10 @@ export const products = [
   },
   {
     id: '2',
-    title: 'Full Carbon Fiber Cylinder',
+    title: 'Replace Carbon Fiber Cylinder',
     description: 'A compact and lightweight design.',
     featuredImage: {
-      url: 'http://data.its.sa:3000/assets/images/metal.png',
+      url: 'http://data.its.sa:3000/assets/images/carbon.png',
       width: 300,
       height: 300,
       altText: 'I am picture 1'
@@ -102,12 +101,12 @@ export const products = [
       {
         id: '1',
         name: 'color',
-        values: ['yellow', 'blue', 'pink', 'red']
+        values: ['blue']
       },
       {
         id: '2',
         name: 'size',
-        values: ['small', 'large']
+        values: ['small', 'medium']
       }
     ],
     variants: [
@@ -115,58 +114,26 @@ export const products = [
         id: '1',
         title: 'Product2 Variant1',
         availableForSale: true,
-        price: 180,
+        price: 23,
         selectedOptions: [
-          {
-            name: 'size',
-            value: 'small'
-          },
-          {
-            name: 'color',
-            value: 'red'
-          }
-        ]
-      },
-      {
-        id: '2',
-        title: 'Product2 Variant2',
-        availableForSale: true,
-        price: 250,
-        selectedOptions: [
-          {
-            name: 'size',
-            value: 'medium'
-          },
           {
             name: 'color',
             value: 'blue'
+          },
+          {
+            name: 'size',
+            value: 'medium'
           }
         ]
       },
-      {
-        id: '3',
-        title: 'Product2 Variant3',
-        availableForSale: true,
-        price: 350,
-        selectedOptions: [
-          {
-            name: 'size',
-            value: 'large'
-          },
-          {
-            name: 'color',
-            value: 'pink'
-          }
-        ]
-      }
     ],
     priceRange: {
       maxVariantPrice: {
-        amount: '350',
+        amount: '23',
         currencyCode: 'SAR'
       },
       minVariantPrice: {
-        amount: '180',
+        amount: '10',
         currencyCode: 'SAR'
       }
     },
@@ -177,7 +144,7 @@ export const products = [
     updatedAt: '2020-6-13',
     images: [
       {
-        url: 'http://data.its.sa:3000/assets/images/metal.png',
+        url: 'http://data.its.sa:3000/assets/images/carbon.png',
         width: 300,
         height: 300,
         altText: 'I am picture 1'
@@ -186,17 +153,17 @@ export const products = [
   },
   {
     id: '3',
-    title: 'Full Carbon Fiber Cylinder',
-    description: 'A compact and lightweight design.',
+    title: 'Full Steel Metal Cylinder',
+    description: 'A low alloy carbon steel with 3mm thickness.',
     featuredImage: {
-      url: 'http://data.its.sa:3000/assets/images/carbon.png',
+      url: 'http://data.its.sa:3000/assets/images/metal.png',
       width: 300,
       height: 300,
       altText: 'I am picture 1'
     },
     tags: 'I am a test tag3',
     handle: 'handle3',
-    availableForSale: false,
+    availableForSale: true,
     descriptionHtml: 'Description HTML3',
     priceRange: {
       maxVariantPrice: {
@@ -204,7 +171,7 @@ export const products = [
         currencyCode: 'SAR'
       },
       minVariantPrice: {
-        amount: '140',
+        amount: '100',
         currencyCode: 'SAR'
       }
     },
@@ -216,12 +183,12 @@ export const products = [
       {
         id: '1',
         name: 'color',
-        values: ['yellow', 'blue', 'pink', 'red']
+        values: ['orange']
       },
       {
         id: '2',
         name: 'size',
-        values: ['small', 'large']
+        values: ['small', 'medium']
       }
     ],
     variants: [
@@ -233,7 +200,11 @@ export const products = [
         selectedOptions: [
           {
             name: 'color',
-            value: 'blue'
+            value: 'orange'
+          },
+          {
+            name: 'size',
+            value: 'medium'
           }
         ]
       }
@@ -248,70 +219,74 @@ export const products = [
       }
     ]
   },
-  // {
-  //   id: '4',
-  //   title: 'Full Carbon Fiber Cylinder',
-  //   description: 'A compact and lightweight design.',
-  //   featuredImage: {
-  //     url: 'http://data.its.sa:3000/assets/images/metal.png',
-  //     width: 300,
-  //     height: 300,
-  //     altText: 'I am picture 1'
-  //   },
-  //   tags: 'I am a test tag3',
-  //   handle: 'handle3',
-  //   availableForSale: false,
-  //   descriptionHtml: 'Description HTML3',
-  //   priceRange: {
-  //     maxVariantPrice: {
-  //       amount: '180',
-  //       currencyCode: 'SAR'
-  //     },
-  //     minVariantPrice: {
-  //       amount: '140',
-  //       currencyCode: 'SAR'
-  //     }
-  //   },
-  //   seo: {
-  //     title: 'seo title3',
-  //     description: 'seo description2'
-  //   },
-  //   options: [
-  //     {
-  //       id: '1',
-  //       name: 'color',
-  //       values: ['yellow', 'blue', 'pink', 'red']
-  //     },
-  //     {
-  //       id: '2',
-  //       name: 'size',
-  //       values: ['small', 'large']
-  //     }
-  //   ],
-  //   variants: [
-  //     {
-  //       id: '1',
-  //       title: 'Test Variant2',
-  //       availableForSale: true,
-  //       price: 180,
-  //       selectedOptions: [
-  //         {
-  //           name: 'color',
-  //           value: 'blue'
-  //         }
-  //       ]
-  //     }
-  //   ],
-  //   updatedAt: '2020-4-10',
-  //   images: [
-  //     {
-  //       url: 'http://data.its.sa:3000/assets/images/metal.png',
-  //       width: 300,
-  //       height: 300,
-  //       altText: 'I am picture 1'
-  //     }
-  //   ]
-  // },
+  {
+    id: '4',
+    title: 'Replace Steel Metal Cylinder',
+    description: 'A low alloy carbon with 3mm thickness.',
+    featuredImage: {
+      url: 'http://data.its.sa:3000/assets/images/metal.png',
+      width: 300,
+      height: 300,
+      altText: 'I am picture 1'
+    },
+    tags: 'I am a test tag3',
+    handle: 'handle4',
+    availableForSale: true,
+    descriptionHtml: 'Description HTML3',
+    priceRange: {
+      maxVariantPrice: {
+        amount: '23',
+        currencyCode: 'SAR'
+      },
+      minVariantPrice: {
+        amount: '10',
+        currencyCode: 'SAR'
+      }
+    },
+    seo: {
+      title: 'seo title3',
+      description: 'seo description2'
+    },
+    options: [
+      {
+        id: '1',
+        name: 'color',
+        values: ['orange']
+      },
+      {
+        id: '2',
+        name: 'size',
+        values: ['small', 'medium']
+      }
+    ],
+    variants: [
+      {
+        id: '1',
+        title: 'Test Variant2',
+        availableForSale: true,
+        price: 23,
+        selectedOptions: [
+          {
+            name: 'color',
+            value: 'orange'
+          },
+          {
+            name: 'size',
+            value: 'medium'
+          }
+        ]
+      }
+    ],
+    updatedAt: '2020-4-10',
+    images: [
+      {
+        url: 'http://data.its.sa:3000/assets/images/metal.png',
+        width: 300,
+        height: 300,
+        altText: 'I am picture 1'
+      }
+    ]
+  },
   // {
   //   id: '5',
   //   title: 'Full Carbon Fiber Cylinder',

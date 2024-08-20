@@ -17,13 +17,15 @@ function SubmitButton({
   availableForSale,
   variants,
   selectedOptions,
-  product
+  product,
+  setSelectedOptions // eslint-disable-line @typescript-eslint/no-unused-vars
 }: {
   availableForSale: boolean;
   selectedVariantId: string | undefined;
   variants: ProductVariant[];
   selectedOptions: SelectedOptions[];
   product: Product;
+  setSelectedOptions: (value: SelectedOptions[]) => void;
 }) {
   // const cart = useAppSelector((state) => state.cart.productsInCart);
   // const { pending } = useFormStatus();
@@ -32,17 +34,51 @@ function SubmitButton({
   const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
   const dispatch = useAppDispatch();
 
+  const haveSameElements = (arr1:string[], arr2:string[])=>{
+    if (arr1.length !== arr2.length) {
+      return false;
+  }
+
+  // Sort both arrays
+  const sortedArr1 = arr1.slice().sort();
+  const sortedArr2 = arr2.slice().sort();
+
+  // Compare the sorted arrays element by element
+  for (let i = 0; i < sortedArr1.length; i++) {
+      if (sortedArr1[i] !== sortedArr2[i]) {
+          return false;
+      }
+  }
+
+  return true;
+  }
+
   const isOptionSelected = ()=>{
-    const variant = variants.find(item=>{
-      const combination = [{name:selectedOptions[0]?.name,value:selectedOptions[0]?.value},{name:selectedOptions[1]?.name,value:selectedOptions[1]?.value}]
-      return JSON.stringify(item.selectedOptions) === JSON.stringify(combination)
+    const combination = selectedOptions.map(option=>{
+      return option.value
     })
-    if (variant){
+    const variant = variants.find(item=>{
+      const variantComibination = item.selectedOptions.map(option=>{
+        return option.value
+      })
+      return haveSameElements(combination,variantComibination)
+    })
+     if (variant) {
       return true
     }else return false
+    // const variant = variants.find(item=>{
+    //   const combination = selectedOptions.map(option=>{
+    //     return option.value
+    //   })
+    //   return JSON.stringify(item.selectedOptions) === JSON.stringify(combination)
+    // })
+    // if (variant){
+    //   return true
+    // }else return false
   }
 
   const addProduct = () => {
+    setSelectedOptions([])
     const variant = variants.find(item=>{
       const combination = [{name:selectedOptions[0]?.name,value:selectedOptions[0]?.value},{name:selectedOptions[1]?.name,value:selectedOptions[1]?.value}]
       return JSON.stringify(item.selectedOptions) === JSON.stringify(combination)
@@ -61,7 +97,7 @@ function SubmitButton({
       product: product
     };
     const cartItem = {
-      id: product.id+optionData[0]?.value+optionData[1]?.value,
+      id: product.id,
       quantity: 1,
       cost: {
         totalAmount: {
@@ -137,12 +173,14 @@ export function AddToCart({
   variants,
   availableForSale,
   selectedOptions,
-  product
+  product,
+  setSelectedOptions // eslint-disable-line @typescript-eslint/no-unused-vars
 }: {
   variants: ProductVariant[];
   availableForSale: boolean;
   selectedOptions: SelectedOptions[];
   product: Product;
+  setSelectedOptions: (value: SelectedOptions[]) => void;
 }) {
   const searchParams = useSearchParams();
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
@@ -163,6 +201,7 @@ export function AddToCart({
         variants={variants}
         selectedOptions={selectedOptions}
         product={product}
+        setSelectedOptions={setSelectedOptions}
       />
     </>
     // </form>

@@ -23,7 +23,7 @@ export default function POSCardSwipe() {
                 router.push('/declined')
               }, 10000)
         }
-    },[storePayment.isConfirmed])
+    },[storePayment.isConfirmed,router])
 
   return (
     <div className="flex items-center justify-center min-h-96 text-white">

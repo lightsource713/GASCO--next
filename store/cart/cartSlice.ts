@@ -5,6 +5,25 @@ const initialState = {
   productsInCart: {} as Cart
 };
 
+export const haveSameElements = (arr1:string[], arr2:string[])=>{
+  if (arr1.length !== arr2.length) {
+    return false;
+}
+
+// Sort both arrays
+const sortedArr1 = arr1.slice().sort();
+const sortedArr2 = arr2.slice().sort();
+
+// Compare the sorted arrays element by element
+for (let i = 0; i < sortedArr1.length; i++) {
+    if (sortedArr1[i] !== sortedArr2[i]) {
+        return false;
+    }
+}
+
+return true;
+}
+
 export const cartClice = createSlice({
   name: 'cart',
   initialState,
@@ -17,12 +36,19 @@ export const cartClice = createSlice({
         const cartItem = state.productsInCart.lines.find(cartItem=>{
           return cartItem.id == action.payload.lines[0].id
         })
-        const cartItemCombination = [{name:cartItem?.merchandise.selectedOptions[0]?.name,value:cartItem?.merchandise.selectedOptions[0]?.value},{name:cartItem?.merchandise.selectedOptions[1]?.name,value:cartItem?.merchandise.selectedOptions[1]?.value}]
-        const addProductComination = [{name:action.payload.lines[0].merchandise.selectedOptions[0]?.name,value:action.payload.lines[0].merchandise.selectedOptions[0]?.value},{name:action.payload.lines[0].merchandise.selectedOptions[1]?.name,value:action.payload.lines[0].merchandise.selectedOptions[1]?.value}]
-        let flag = false;
-        if(JSON.stringify(cartItemCombination) === JSON.stringify(addProductComination)){
-          flag = true
-        }else flag = false
+        // const cartItemCombination = [{name:cartItem?.merchandise.selectedOptions[0]?.name,value:cartItem?.merchandise.selectedOptions[0]?.value},{name:cartItem?.merchandise.selectedOptions[1]?.name,value:cartItem?.merchandise.selectedOptions[1]?.value}]
+        const cartItemCombination = cartItem?.merchandise.selectedOptions.map(option=>{
+          return option.value
+        })
+        // const addProductComination = [{name:action.payload.lines[0].merchandise.selectedOptions[0]?.name,value:action.payload.lines[0].merchandise.selectedOptions[0]?.value},{name:action.payload.lines[0].merchandise.selectedOptions[1]?.name,value:action.payload.lines[0].merchandise.selectedOptions[1]?.value}]
+        const addProductComination:string[] = action.payload.lines[0].merchandise.selectedOptions.map((option: { value: any; })=>{
+          return option.value
+        })
+        let flag = false
+        if(cartItemCombination){
+          flag = haveSameElements(cartItemCombination,addProductComination)
+        }
+        
         if(flag){
           if(cartItem){
             const increatedCartItemData= {
@@ -108,7 +134,6 @@ export const cartClice = createSlice({
             totalQuantity:state.productsInCart.totalQuantity-1}
         }else{
           if(cartItem){
-            debugger
             tempCartData.lines[itemIndex] = {
               ...cartItem,
               quantity:action.payload.sendingData.quantity,

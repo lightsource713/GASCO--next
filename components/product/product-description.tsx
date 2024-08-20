@@ -14,7 +14,6 @@ type SelectedOptions = {
 
 export default function ProductDescription({ product }: { product: Product }) {
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions[]>([]);
-  // console.log(selectedOptions)
 
   return (
     <>
@@ -50,6 +49,7 @@ export default function ProductDescription({ product }: { product: Product }) {
         availableForSale={product.availableForSale}
         selectedOptions={selectedOptions}
         product={product}
+        setSelectedOptions={setSelectedOptions}
       />
     </>
   );

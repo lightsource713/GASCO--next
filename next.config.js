@@ -26,9 +26,9 @@ module.exports = withNextVideo({
       },
       {
         protocol: 'http',
-        hostname: '127.0.0.1',
+        hostname: 'data.its.sa',
         port: '3000',
-        pathname: '/assets/images/**'
+        pathname: '/assets/images/**',
       }
     ]
   },

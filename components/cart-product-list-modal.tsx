@@ -1,7 +1,6 @@
 import React from 'react';
 // import { confirmPayment } from 'store/payment/payment';
 import { useRouter } from 'next/navigation';
-import { useAppDispatch } from '../store/store';
 
 interface Product {
   id: number;
@@ -19,8 +18,7 @@ interface ProductListModalProps {
 
 const ProductListModal: React.FC<ProductListModalProps> = ({ show, onClose, products }) => {
   if (!show) return null;
-const dispatch = useAppDispatch();
-const router = useRouter();
+  const router = useRouter();
 
 //   const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
 //     const target = e.target as HTMLElement;
