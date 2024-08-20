@@ -15,6 +15,7 @@ export default function Declined() {
             alt="Declined" 
             layout="fill" 
             objectFit="contain" 
+            priority
           />
         </div>
       </div>

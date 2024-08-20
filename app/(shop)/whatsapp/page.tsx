@@ -13,8 +13,10 @@ export default function Whatsapp() {
           <Image 
             src="http://data.its.sa:3000/assets/images/whatsapp.png" 
             alt="whatsapp" 
-            layout="fill" 
-            objectFit="contain" 
+            fill
+            className="object-contain"
+            sizes="(max-width: 640px) 100vw, 36px"
+            priority
           />
         </div>
       </div>

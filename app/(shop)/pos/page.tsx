@@ -35,8 +35,10 @@ export default function POSCardSwipe() {
           <Image 
             src="http://data.its.sa:3000/assets/images/pos.png" 
             alt="POS Card Swipe" 
-            layout="fill" 
-            objectFit="contain" 
+            fill
+            className="object-contain"
+            priority
+            sizes="(max-width: 640px) 100vw, 36px"
           />
         </div>
       </div>

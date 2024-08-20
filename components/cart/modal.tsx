@@ -134,6 +134,7 @@ export default function CartModal({ cart }: { cart: Cart  }) {
                                     item.merchandise.product.title
                                   }
                                   src={item.merchandise.product.featuredImage.url}
+                                  priority
                                 />
                               </div>
 
