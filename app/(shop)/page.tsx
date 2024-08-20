@@ -1,5 +1,4 @@
 import { Carousel } from 'components/carousel';
-import { ThreeItemGrid } from 'components/grid/three-items';
 import OutOfStock from 'components/out-of-stock';
 import VideoSquare from 'components/video-square';
 import { Suspense } from 'react';
@@ -18,7 +17,6 @@ export const metadata = {
 export default async function HomePage() {
   return (
     <>
-      <ThreeItemGrid />
       <Suspense>
         {products.length !== 0 ? <VideoSquare /> : <OutOfStock />}
         <Carousel />

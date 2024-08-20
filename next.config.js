@@ -42,3 +42,10 @@ module.exports = withNextVideo({
     ];
   }
 });
+
+ // next.config.js
+ module.exports = {
+  images: {
+    domains: ['data.its.sa'],
+  },
+};

@@ -11,7 +11,7 @@ export default function Whatsapp() {
         </h1>
         <div className="w-32 h-32 relative mt-8">
           <Image 
-            src="http://127.0.0.1:3000/assets/images/whatsapp.png" 
+            src="http://data.its.sa:3000/assets/images/whatsapp.png" 
             alt="whatsapp" 
             layout="fill" 
             objectFit="contain" 

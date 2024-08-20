@@ -33,7 +33,7 @@ export default function POSCardSwipe() {
         </h1>
         <div className="w-32 h-32 relative">
           <Image 
-            src="http://127.0.0.1:3000/assets/images/pos.png" 
+            src="http://data.its.sa:3000/assets/images/pos.png" 
             alt="POS Card Swipe" 
             layout="fill" 
             objectFit="contain" 
