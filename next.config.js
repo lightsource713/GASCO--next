@@ -30,7 +30,8 @@ module.exports = withNextVideo({
         port: '3000',
         pathname: '/assets/images/**',
       }
-    ]
+    ],
+    domains: ['data.its.sa']
   },
   async redirects() {
     return [
@@ -42,10 +43,3 @@ module.exports = withNextVideo({
     ];
   }
 });
-
- // next.config.js
- module.exports = {
-  images: {
-    domains: ['data.its.sa'],
-  },
-};
