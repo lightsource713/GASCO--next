@@ -10,7 +10,6 @@ export const metadata = {
 };
 
 export default async function SearchPage() {
-
   return (
     <>
       {products.length > 0 ? (

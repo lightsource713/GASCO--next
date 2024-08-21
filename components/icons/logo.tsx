@@ -2,7 +2,7 @@
 
 export default function LogoIcon() {
   return (
-    <div className="relative w-36 h-36">
+    <div className="relative h-36 w-36">
       {/* <Image
         alt="logo image"
         src="/assets/images/estwan-logo.png"
@@ -11,11 +11,11 @@ export default function LogoIcon() {
         className="object-contain"
         priority
       /> */}
-       <img
-          src={"/assets/images/estwan-logo.png"}
-          alt="logo image"
-          className="object-contain" // Use object-contain to ensure the whole image is shown
-        />
+      <img
+        src={'/assets/images/estwan-logo.png'}
+        alt="logo image"
+        className="object-contain" // Use object-contain to ensure the whole image is shown
+      />
     </div>
   );
 }

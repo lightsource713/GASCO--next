@@ -4,7 +4,6 @@ export const products = [
     title: 'Full Carbon Fiber Cylinder',
     description: 'A compact and lightweight design.',
     featuredImage: {
-      // url: '/assets/images/carbon.png',
       url: '/assets/images/carbon.png',
       width: 300,
       height: 300,
@@ -126,7 +125,7 @@ export const products = [
             value: 'medium'
           }
         ]
-      },
+      }
     ],
     priceRange: {
       maxVariantPrice: {
@@ -287,7 +286,7 @@ export const products = [
         altText: 'I am picture 1'
       }
     ]
-  },
+  }
   // {
   //   id: '5',
   //   title: 'Full Carbon Fiber Cylinder',
@@ -336,7 +335,7 @@ export const products = [
   //       height: 300,
   //       altText: 'I am picture 5'
   //     },
-     
+
   //   ],
   //   variants: [
   //     {
