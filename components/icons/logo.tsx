@@ -12,7 +12,7 @@ export default function LogoIcon() {
         priority
       /> */}
       <img
-        src={'/assets/images/estwan-logo.png'}
+        src={'assets/images/estwan-logo.png'}
         alt="logo image"
         className="object-contain" // Use object-contain to ensure the whole image is shown
       />
