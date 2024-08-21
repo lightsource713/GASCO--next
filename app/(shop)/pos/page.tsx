@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { confirmPayment } from 'store/payment/payment';
@@ -8,31 +8,31 @@ export default function POSCardSwipe() {
   const storePayment = useAppSelector((state) => state.payment);
   const router = useRouter();
   const dispatch = useAppDispatch();
-  console.log(storePayment)
-    useEffect(()=>{
-        dispatch(confirmPayment("TestPayment"))
-    },[dispatch])
-    useEffect(()=>{
-        if(storePayment.isConfirmed){
-            setTimeout(() => {
-                router.push('/thank')
-              }, 10000)
-        }else{
-            setTimeout(() => {
-                router.push('/declined')
-              }, 10000)
-        }
-    },[storePayment.isConfirmed,router])
+  console.log(storePayment);
+  useEffect(() => {
+    dispatch(confirmPayment('TestPayment'));
+  }, [dispatch]);
+  useEffect(() => {
+    if (storePayment.isConfirmed) {
+      setTimeout(() => {
+        router.push('/thank');
+      }, 10000);
+    } else {
+      setTimeout(() => {
+        router.push('/declined');
+      }, 10000);
+    }
+  }, [storePayment.isConfirmed, router]);
 
   return (
-    <div className="flex items-center justify-center min-h-96 text-white">
+    <div className="flex min-h-96 items-center justify-center text-white">
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-xl mb-6" style={{fontSize:40}}>
+        <h1 className="mb-6 text-xl" style={{ fontSize: 40 }}>
           Please follow instruction on the POS card swipe.
         </h1>
-        <div className="w-32 h-32 relative">
+        <div className="relative h-32 w-32">
           {/* <Image 
-            src="http://data.its.sa:3000/assets/images/pos.png" 
+            src="/assets/images/pos.png" 
             alt="POS Card Swipe" 
             fill
             className="object-contain"
@@ -40,8 +40,8 @@ export default function POSCardSwipe() {
             sizes="(max-width: 640px) 100vw, 36px"
           /> */}
           <img
-            src="http://data.its.sa:3000/assets/images/pos.png" 
-            alt="POS Card Swipe" 
+            src="/assets/images/pos.png"
+            alt="POS Card Swipe"
             className="object-contain" // Use object-contain to ensure the whole image is shown
           />
         </div>

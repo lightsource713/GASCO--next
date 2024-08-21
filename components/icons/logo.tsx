@@ -2,20 +2,20 @@
 
 export default function LogoIcon() {
   return (
-    <div className="relative w-36 h-36">
+    <div className="relative h-36 w-36">
       {/* <Image
         alt="logo image"
-        src="http://data.its.sa:3000/assets/images/estwan-logo.png"
+        src="/assets/images/estwan-logo.png"
         fill
         sizes="(max-width: 640px) 100vw, 36px" // Adjust sizes based on your design
         className="object-contain"
         priority
       /> */}
-       <img
-          src={"http://data.its.sa:3000/assets/images/estwan-logo.png"}
-          alt="logo image"
-          className="object-contain" // Use object-contain to ensure the whole image is shown
-        />
+      <img
+        src={'/assets/images/estwan-logo.png'}
+        alt="logo image"
+        className="object-contain" // Use object-contain to ensure the whole image is shown
+      />
     </div>
   );
 }
