@@ -11,7 +11,7 @@ export default function Whatsapp() {
         </h1>
         <div className="w-32 h-32 relative mt-8">
           {/* <Image 
-            src="http://data.its.sa:3000/assets/images/whatsapp.png" 
+            src="/assets/images/whatsapp.png" 
             alt="whatsapp" 
             fill
             className="object-contain"
@@ -19,7 +19,7 @@ export default function Whatsapp() {
             priority
           /> */}
           <img
-            src="http://data.its.sa:3000/assets/images/whatsapp.png" 
+            src="/assets/images/whatsapp.png" 
             alt="whatsapp" 
             className="object-contain" // Use object-contain to ensure the whole image is shown
           />

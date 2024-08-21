@@ -32,7 +32,7 @@ export default function POSCardSwipe() {
         </h1>
         <div className="w-32 h-32 relative">
           {/* <Image 
-            src="http://data.its.sa:3000/assets/images/pos.png" 
+            src="/assets/images/pos.png" 
             alt="POS Card Swipe" 
             fill
             className="object-contain"
@@ -40,7 +40,7 @@ export default function POSCardSwipe() {
             sizes="(max-width: 640px) 100vw, 36px"
           /> */}
           <img
-            src="http://data.its.sa:3000/assets/images/pos.png" 
+            src="/assets/images/pos.png" 
             alt="POS Card Swipe" 
             className="object-contain" // Use object-contain to ensure the whole image is shown
           />

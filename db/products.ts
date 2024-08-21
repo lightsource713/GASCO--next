@@ -4,7 +4,8 @@ export const products = [
     title: 'Full Carbon Fiber Cylinder',
     description: 'A compact and lightweight design.',
     featuredImage: {
-      url: 'http://data.its.sa:3000/assets/images/carbon.png',
+      // url: '/assets/images/carbon.png',
+      url: '/assets/images/carbon.png',
       width: 300,
       height: 300,
       altText: 'I am picture 1'
@@ -42,7 +43,7 @@ export const products = [
     updatedAt: '2020-4-10',
     images: [
       {
-        url: 'http://data.its.sa:3000/assets/images/carbon.png',
+        url: '/assets/images/carbon.png',
         width: 300,
         height: 300,
         altText: 'I am picture 1'
@@ -88,7 +89,7 @@ export const products = [
     title: 'Replace Carbon Fiber Cylinder',
     description: 'A compact and lightweight design.',
     featuredImage: {
-      url: 'http://data.its.sa:3000/assets/images/carbon.png',
+      url: '/assets/images/carbon.png',
       width: 300,
       height: 300,
       altText: 'I am picture 1'
@@ -144,7 +145,7 @@ export const products = [
     updatedAt: '2020-6-13',
     images: [
       {
-        url: 'http://data.its.sa:3000/assets/images/carbon.png',
+        url: '/assets/images/carbon.png',
         width: 300,
         height: 300,
         altText: 'I am picture 1'
@@ -156,7 +157,7 @@ export const products = [
     title: 'Full Steel Metal Cylinder',
     description: 'A low alloy carbon steel with 3mm thickness.',
     featuredImage: {
-      url: 'http://data.its.sa:3000/assets/images/metal.png',
+      url: '/assets/images/metal.png',
       width: 300,
       height: 300,
       altText: 'I am picture 1'
@@ -212,7 +213,7 @@ export const products = [
     updatedAt: '2020-4-10',
     images: [
       {
-        url: 'http://data.its.sa:3000/assets/images/carbon.png',
+        url: '/assets/images/carbon.png',
         width: 300,
         height: 300,
         altText: 'I am picture 1'
@@ -224,7 +225,7 @@ export const products = [
     title: 'Replace Steel Metal Cylinder',
     description: 'A low alloy carbon with 3mm thickness.',
     featuredImage: {
-      url: 'http://data.its.sa:3000/assets/images/metal.png',
+      url: '/assets/images/metal.png',
       width: 300,
       height: 300,
       altText: 'I am picture 1'
@@ -280,7 +281,7 @@ export const products = [
     updatedAt: '2020-4-10',
     images: [
       {
-        url: 'http://data.its.sa:3000/assets/images/metal.png',
+        url: '/assets/images/metal.png',
         width: 300,
         height: 300,
         altText: 'I am picture 1'
@@ -292,7 +293,7 @@ export const products = [
   //   title: 'Full Carbon Fiber Cylinder',
   //   description: 'A low alloy carbon steel with 3mm thickness.',
   //   featuredImage: {
-  //     url: 'http://data.its.sa:3000/assets/images/carbon.png',
+  //     url: '/assets/images/carbon.png',
   //     width: 300,
   //     height: 300,
   //     altText: 'I am picture 5'
@@ -330,7 +331,7 @@ export const products = [
   //   updatedAt: '2020-4-10',
   //   images: [
   //     {
-  //       url: 'http://data.its.sa:3000/assets/images/carbon.png',
+  //       url: '/assets/images/carbon.png',
   //       width: 300,
   //       height: 300,
   //       altText: 'I am picture 5'
@@ -377,7 +378,7 @@ export const products = [
   //   title: 'Full Carbon Fiber Cylinder',
   //   description: 'A compact and lightweight design.',
   //   featuredImage: {
-  //     url: 'http://data.its.sa:3000/assets/images/metal.png',
+  //     url: '/assets/images/metal.png',
   //     width: 300,
   //     height: 300,
   //     altText: 'I am picture 6'
@@ -465,7 +466,7 @@ export const products = [
   //   updatedAt: '2020-6-13',
   //   images: [
   //     {
-  //       url: 'http://data.its.sa:3000/assets/images/metal.png',
+  //       url: '/assets/images/metal.png',
   //       width: 300,
   //       height: 300,
   //       altText: 'I am picture 1'

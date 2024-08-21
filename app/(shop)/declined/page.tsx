@@ -10,14 +10,14 @@ export default function Declined() {
         </h1>
         <div className="w-32 h-32 relative mt-10">
           {/* <Image 
-            src="http://data.its.sa:3000/assets/images/declined.png" 
+            src="/assets/images/declined.png" 
             alt="Declined" 
             fill
             className="object-contain"
             priority
           /> */}
                 <img
-                  src="http://data.its.sa:3000/assets/images/declined.png" 
+                  src="/assets/images/declined.png" 
                   alt="Declined" 
                   className="object-contain" // Use object-contain to ensure the whole image is shown
                 />
