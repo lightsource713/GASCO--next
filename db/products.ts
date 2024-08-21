@@ -4,7 +4,7 @@ export const products = [
     title: 'Full Carbon Fiber Cylinder',
     description: 'A compact and lightweight design.',
     featuredImage: {
-      url: 'http://data.its.sa:3000/assets/images/carbon.png',
+      url: '/assets/images/carbon.png',
       width: 300,
       height: 300,
       altText: 'I am picture 1'
