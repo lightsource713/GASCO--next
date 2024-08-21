@@ -82,7 +82,7 @@ export function VariantSelector({
   variants: ProductVariant[];
   product: Product;
   selectedOptions: SelectedOptions[];
-  setSelectedOptions: (value: SelectedOptions[]) => void;
+  setSelectedOptions: (value: SelectedOptions[]) => void; // eslint-disable-line no-unused-vars
 }) {
   const searchParams = useSearchParams();
 

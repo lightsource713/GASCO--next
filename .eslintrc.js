@@ -2,6 +2,8 @@ module.exports = {
   extends: ['next', 'prettier'],
   plugins: ['unicorn'],
   rules: {
+    '@next/next/no-img-element': 'off',
+    // '@typescript-eslint/no-unused-vars': ['error'],
     'no-unused-vars': [
       'error',
       {

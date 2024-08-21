@@ -14,7 +14,7 @@ interface Params {
 export const runtime = 'edge';
 
 // The main page component
-export default async function ProductPage({ params }: { params: Params }) {
+export default function ProductPage({ params }: { params: Params }) {
   const product = products.find((item: any) => item.handle === params.handle);
   const router = useRouter();
   if (!product) return notFound();

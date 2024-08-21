@@ -45,7 +45,8 @@ module.exports = withNextVideo({
 
 module.exports = {
   // Add other configurations here
-  devServer: {
-    hot: process.env.NODE_ENV !== 'production', // Enable HMR only in development
-  },
+  // devServer: {
+  //   hot: process.env.NODE_ENV !== 'production', // Enable HMR only in development
+  // },
+  reactStrictMode: true,
 };
