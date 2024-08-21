@@ -7,6 +7,7 @@ import { createUrl } from 'lib/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Fragment, useEffect, useRef, useState } from 'react';
+import { useAppSelector } from '../../store/store';
 import CloseCart from './close-cart';
 import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
@@ -22,6 +23,7 @@ export default function CartModal({ cart }: { cart: Cart  }) {
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
   const router = useRouter();
+  const otp = useAppSelector((state) => state.otp);
 
   useEffect(() => {
     // Open cart modal when quantity changes.
@@ -52,8 +54,8 @@ export default function CartModal({ cart }: { cart: Cart  }) {
 
   return (
     <>
-      <button aria-label="Open cart" onClick={openCart}>
-        <OpenCart quantity={cart?.totalQuantity} />
+      <button aria-label="Open cart" onClick={openCart} disabled = {otp.otpVerified}>
+        <OpenCart quantity={cart?.totalQuantity} disabled = {otp.otpVerified}/>
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeCart} className="relative z-50">
@@ -122,14 +124,14 @@ export default function CartModal({ cart }: { cart: Cart  }) {
                               onClick={closeCart}
                               className="z-30 flex flex-row space-x-4"
                             >
-                              <div className="relative h-16 w-16 cursor-pointer overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
+                              <div className="relative h-20 w-20 cursor-pointer overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
                                 <img
                                   src={item.merchandise.product.featuredImage.url}
                                   alt={
                                     item.merchandise.product.featuredImage.altText ||
                                     item.merchandise.product.title
                                   }
-                                  className="h-full w-full object-cover" // Use object-contain to ensure the whole image is shown
+                                  className="w-full h-full object-contain" // Use object-contain to ensure the whole image is shown
                                 />
                               </div>
 

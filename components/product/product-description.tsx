@@ -12,8 +12,24 @@ type SelectedOptions = {
   value: string;
 };
 
+type OptionType = {
+  name:string,
+  value:string
+}
+
 export default function ProductDescription({ product }: { product: Product }) {
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions[]>([]);
+  const options= product.variants[0]?.selectedOptions as OptionType[]
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions[]>([{
+    id:"1",
+    name:options[0]?.name?options[0]?.name:'',
+    value:options[0]?.value?options[0]?.value:''
+  },
+  {
+    id:"2",
+    name:options[1]?.name?options[1]?.name:'',
+    value:options[1]?.value?options[1]?.value:''
+  },
+]);
 
   return (
     <>

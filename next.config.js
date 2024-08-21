@@ -3,7 +3,6 @@ const { withNextVideo } = require('next-video/process');
 /** @type {import('next').NextConfig} */
 module.exports = withNextVideo({
   eslint: {
-    // Disabling on production builds because we're running checks on PRs via GitHub Actions.
     ignoreDuringBuilds: true
   },
   images: {
@@ -43,3 +42,10 @@ module.exports = withNextVideo({
     ];
   }
 });
+
+module.exports = {
+  // Add other configurations here
+  devServer: {
+    hot: process.env.NODE_ENV !== 'production', // Enable HMR only in development
+  },
+};

@@ -1,3 +1,5 @@
+"use client"
+
 import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
 import LogoSquare from 'components/logo-square';
@@ -5,8 +7,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 const { SITE_NAME } = process.env;
 
-export default async function Navbar() {
-
+export default function Navbar() {
   return (
     <nav className="relative mb-5 flex items-center justify-between p-4 lg:px-6">
       <div className="flex w-full items-center">

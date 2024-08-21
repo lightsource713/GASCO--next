@@ -65,22 +65,6 @@ export const products = [
           }
         ]
       },
-      {
-        id: '2',
-        title: 'Product1 Variant2',
-        availableForSale: true,
-        price: 120,
-        selectedOptions: [
-          {
-            name: 'color',
-            value: 'blue'
-          },
-          {
-            name: 'size',
-            value: 'medium'
-          }
-        ]
-      }
     ]
   },
   {

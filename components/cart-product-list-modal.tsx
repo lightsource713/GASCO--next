@@ -1,5 +1,7 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { setOtpVerifiedTrue } from 'store/otp-verify/otpVerify';
+import { useAppDispatch } from '../store/store';
 
 interface Product {
   id: number;
@@ -16,9 +18,11 @@ interface ProductListModalProps {
 }
 
 const ProductListModal: React.FC<ProductListModalProps> = ({ show, onClose, products }) => {
-  if (!show) return null;
+  const dispatch = useAppDispatch()
   const router = useRouter();
-
+  
+  if (!show) return null;
+  
   const getTotalInfo = ()=>{
     let totalCount =0
     let totalPrice =0
@@ -29,12 +33,13 @@ const ProductListModal: React.FC<ProductListModalProps> = ({ show, onClose, prod
     return (
         <div>
             <p>{`Total Quantity:${totalCount}`}</p>
-            <p>{`Total Price:${totalPrice}SAR`}</p>
+            <p>{`Total Price:SAR ${totalPrice}`}</p>
         </div>
     )
   }
 
   const handlePayment = ()=>{
+    dispatch(setOtpVerifiedTrue())
     router.push('/pos')
   }
 

@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  otp:''
+  otp:'',
+  otpVerified:false
 };
 
 export const otpVerifySlice = createSlice({
@@ -13,8 +14,11 @@ export const otpVerifySlice = createSlice({
         //Insert call backend here
       state.otp = "123456"
     },
+    setOtpVerifiedTrue:(state)=>{
+      state.otpVerified = true
+    }
   }
 });
 
-export const { sendMobileNumber,} = otpVerifySlice.actions;
+export const { sendMobileNumber,setOtpVerifiedTrue} = otpVerifySlice.actions;
 export const otpReducer = otpVerifySlice.reducer;

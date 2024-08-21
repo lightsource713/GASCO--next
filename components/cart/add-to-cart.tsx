@@ -13,6 +13,11 @@ type SelectedOptions = {
   value: string;
 };
 
+type OptionType = {
+  name:string,
+  value:string
+}
+
 function SubmitButton({
   availableForSale,
   variants,
@@ -67,7 +72,19 @@ function SubmitButton({
   }
 
   const addProduct = () => {
-    setSelectedOptions([])
+    const options= product.variants[0]?.selectedOptions as OptionType[]
+    setSelectedOptions([
+      {
+        id:"1",
+        name:options[0]?.name?options[0]?.name:'',
+        value:options[0]?.value?options[0]?.value:''
+      },
+      {
+        id:"2",
+        name:options[1]?.name?options[1]?.name:'',
+        value:options[1]?.value?options[1]?.value:''
+      }
+    ])
     const combination = selectedOptions.map(option=>{
       return option.value
     })

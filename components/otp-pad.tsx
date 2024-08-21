@@ -2,7 +2,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../store/store';
 import ProductListModal from './cart-product-list-modal';
-import Modal from './cylinder-dist-modal';
 
 type ProductListType= {
   id:number,
@@ -14,7 +13,6 @@ type ProductListType= {
 
 const OTPpad = () => {
   const [number, setNumber] = useState('');
-  const [showModal, setShowModal] = useState(false);
   const [showSecondModal, setShowSecondModal] = useState(false);
   const [productList,setProductList] = useState<ProductListType[]>([])
   const otp = useAppSelector((state) => state.otp.otp);
@@ -41,10 +39,8 @@ const OTPpad = () => {
   };
 
   const handleSubmit = () => {
-
     if(number == otp){
-      console.log("i'm correct")
-      setShowModal(true);
+      setShowSecondModal(true)
     }else{
       alert("Incorrect Code!");
       router.push('/checkout')
@@ -53,16 +49,6 @@ const OTPpad = () => {
 
   const handleClear = () => {
     setNumber('');
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  const handleConfirm = () => {
-    // Dummy function to confirm the action
-    setShowModal(false);
-    setShowSecondModal(true)
   };
 
   const handleCloseSecondModal = () => {
@@ -105,7 +91,7 @@ const OTPpad = () => {
           Clear
         </button>
       </div>
-      <Modal show={showModal} onClose={handleCloseModal} onConfirm={handleConfirm} />
+      {/* <Modal show={showModal} onClose={handleCloseModal} onConfirm={handleConfirm} /> */}
       <ProductListModal show={showSecondModal} onClose={handleCloseSecondModal} products={productList} />
     </div>
   );
