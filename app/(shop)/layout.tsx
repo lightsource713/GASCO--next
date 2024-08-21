@@ -1,5 +1,6 @@
 import Footer from 'components/layout/footer';
 import Navbar from 'components/layout/navbar';
+import { GeistSans } from 'geist/font';
 import { ensureStartsWith } from 'lib/utils';
 import { ReactNode, Suspense } from 'react';
 import ReduxProvider from 'store/redux-provider';
@@ -33,8 +34,9 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
+  const htmlClass = `${GeistSans.variable} dark`
   return (
-    <html lang="en" className={'dark' }>
+    <html lang="en" className={htmlClass}>
       <head>
       <script
           dangerouslySetInnerHTML={{
