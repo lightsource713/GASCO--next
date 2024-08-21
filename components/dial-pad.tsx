@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { sendMobileNumber } from 'store/otp-verify/otpVerify';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import ProductListModal from './cart-product-list-modal';
-import Modal from './cylinder-dist-modal';
 
 type ProductListType= {
   id:number,
@@ -16,7 +15,6 @@ type ProductListType= {
 const DialPad = () => {
   const [number, setNumber] = useState('');
   const router = useRouter();
-  const [showModal, setShowModal] = useState(false);
   const [showSecondModal, setShowSecondModal] = useState(false);
   const [productList,setProductList] = useState<ProductListType[]>([])
   const dispatch = useAppDispatch();
@@ -48,16 +46,6 @@ const DialPad = () => {
 
   const handleClear = () => {
     setNumber('');
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  const handleConfirm = () => {
-    // Dummy function to confirm the action
-    setShowModal(false);
-    setShowSecondModal(true)
   };
 
   const handleCloseSecondModal = () => {
@@ -97,11 +85,11 @@ const DialPad = () => {
         >
           Clear
         </button>
-        <button className="rounded-md bg-yellow-500 px-6 py-2 text-black shadow-md" onClick={()=>setShowModal(true)}>
+        <button className="rounded-md bg-yellow-500 px-6 py-2 text-black shadow-md" onClick={()=>setShowSecondModal(true)}>
           Continue as guest
         </button>
       </div>
-      <Modal show={showModal} onClose={handleCloseModal} onConfirm={handleConfirm} />
+      {/* <Modal show={showModal} onClose={handleCloseModal} onConfirm={handleConfirm} /> */}
       <ProductListModal show={showSecondModal} onClose={handleCloseSecondModal} products={productList} />
     </div>
   );
