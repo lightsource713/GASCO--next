@@ -9,14 +9,6 @@ export default function Whatsapp() {
           We sent your receipt in your WhatsApp
         </h1>
         <div className="relative mt-8 h-32 w-32">
-          {/* <Image 
-            src="/assets/images/whatsapp.png" 
-            alt="whatsapp" 
-            fill
-            className="object-contain"
-            sizes="(max-width: 640px) 100vw, 36px"
-            priority
-          /> */}
           <img
             src="/assets/images/whatsapp.png"
             alt="whatsapp"

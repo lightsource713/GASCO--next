@@ -36,11 +36,9 @@ export const cartClice = createSlice({
         const cartItem = state.productsInCart.lines.find(cartItem=>{
           return cartItem.id == action.payload.lines[0].id
         })
-        // const cartItemCombination = [{name:cartItem?.merchandise.selectedOptions[0]?.name,value:cartItem?.merchandise.selectedOptions[0]?.value},{name:cartItem?.merchandise.selectedOptions[1]?.name,value:cartItem?.merchandise.selectedOptions[1]?.value}]
         const cartItemCombination = cartItem?.merchandise.selectedOptions.map(option=>{
           return option.value
         })
-        // const addProductComination = [{name:action.payload.lines[0].merchandise.selectedOptions[0]?.name,value:action.payload.lines[0].merchandise.selectedOptions[0]?.value},{name:action.payload.lines[0].merchandise.selectedOptions[1]?.name,value:action.payload.lines[0].merchandise.selectedOptions[1]?.value}]
         const addProductComination:string[] = action.payload.lines[0].merchandise.selectedOptions.map((option: { value: any; })=>{
           return option.value
         })
@@ -66,11 +64,6 @@ export const cartClice = createSlice({
             tempCartData.lines[sameCartItemIndex] = increatedCartItemData
             state.productsInCart = {...tempCartData,
               totalQuantity: state.productsInCart.totalQuantity + 1,
-              // cost:{
-              //   totalAmount:{
-              //     ...state.productsInCart.cost.totalAmount,amount:String(Number(state.productsInCart.cost.totalAmount.amount)+Number(action.payload.cost.totalAmount.amount))
-              //   }
-              // }
             }
           }
         }else{
@@ -81,12 +74,6 @@ export const cartClice = createSlice({
           ...state.productsInCart,
           lines: tempLines,
           totalQuantity: state.productsInCart.totalQuantity + 1,
-          // cost:{
-          //   totalAmount:{
-          //     ...state.productsInCart.cost.totalAmount,
-          //     amount:String(Number(state.productsInCart.cost.totalAmount.amount)+Number(action.payload.cost.totalAmount.amount)),
-          //   }
-          // }
         };
         }
       }
@@ -97,16 +84,9 @@ export const cartClice = createSlice({
         return item.id == action.payload.id
        })
        const deletedItemQuantity = tempCartData.lines[itemIndex]?.quantity
-      //  const deletedItemTotalAmount = tempCartData.lines[itemIndex]?.cost.totalAmount.amount
        tempCartData.lines.splice(itemIndex,1)
        state.productsInCart = {
         ...tempCartData,
-        // cost:{
-        //   totalAmount:{
-        //     ...state.productsInCart.cost.totalAmount,
-        //     amount:String(Number(state.productsInCart.cost.totalAmount.amount)-Number(deletedItemTotalAmount))
-        //   }
-        // },
         totalQuantity:deletedItemQuantity?state.productsInCart.totalQuantity-deletedItemQuantity:state.productsInCart.totalQuantity}
     },
     editQuantity:(state,action)=>{
@@ -125,12 +105,6 @@ export const cartClice = createSlice({
           //Will do
           state.productsInCart = {
             ...tempCartData,
-            // cost:{
-            //   totalAmount:{
-            //     ...state.productsInCart.cost.totalAmount,
-            //     amount:String(Number(state.productsInCart.cost.totalAmount.amount)-Number(deletedItemTotalAmount))
-            //   }
-            // },
             totalQuantity:state.productsInCart.totalQuantity-1}
         }else{
           if(cartItem){
@@ -146,12 +120,6 @@ export const cartClice = createSlice({
             }
             state.productsInCart = {
               ...tempCartData,
-              // cost:{
-              //   totalAmount:{
-              //     ...state.productsInCart.cost.totalAmount,
-              //     amount:String(Number(state.productsInCart.cost.totalAmount.amount)+Number(tempCartData.lines[itemIndex])/Number(tempCartData.lines[itemIndex]?.quantity))
-              //   }
-              // },
               totalQuantity:state.productsInCart.totalQuantity-1}
           }
         }
@@ -170,12 +138,6 @@ export const cartClice = createSlice({
         }
         state.productsInCart = {
           ...tempCartData,
-          // cost:{
-          //   totalAmount:{
-          //     ...state.productsInCart.cost.totalAmount,
-          //     amount:String(Number(state.productsInCart.cost.totalAmount.amount)+Number(tempCartData.lines[itemIndex])/Number(tempCartData.lines[itemIndex]?.quantity))
-          //   }
-          // },
           totalQuantity:state.productsInCart.totalQuantity+1}
       }
     }

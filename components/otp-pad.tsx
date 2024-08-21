@@ -77,8 +77,9 @@ const OTPpad = () => {
         value={number}
         readOnly
         placeholder="Please enter OTP"
-        className="mb-3 w-150 border-b-2 p-2 text-center"
+        className="mb-3 w-150 border-b-2 p-2 text-center text-black"
       />
+      
       <div className="mb-3 grid grid-cols-3 gap-2">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'].map((item) => (
           <button

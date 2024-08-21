@@ -24,9 +24,6 @@ const ScrollingCarousel = () => {
                   currencyCode={"SAR"}
       
                 />
-                {/* <div className="absolute bottom-2 left-2 flex items-center justify-center bg-white bg-opacity-75 p-1 rounded-md">
-                  <span>{product.title}</span>
-                </div> */}
                 </div>
             </Link>
           );

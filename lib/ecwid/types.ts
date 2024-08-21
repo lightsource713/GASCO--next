@@ -1,9 +1,7 @@
 export type Maybe<T> = T | null;
 
 export type Cart = {
-  // id: string;
   cost: {
-    // subtotalAmount: Money;
     totalAmount: Money;
   };
   totalQuantity: number;
@@ -68,7 +66,6 @@ export type Product = {
     minVariantPrice: Money;
   };
   seo: SEO;
-  // tags: string[];
   updatedAt: string;
   variants: ProductVariant[];
   images: Image[];
@@ -88,7 +85,6 @@ export type ProductVariant = {
     name: string;
     value: string;
   }[];
-  // price: Money;
   price: number;
 };
 

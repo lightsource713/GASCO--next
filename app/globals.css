@@ -2,18 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
-
-@supports (font: -apple-system-body) and (-webkit-appearance: none) {
-  img[loading='lazy'] {
-    clip-path: inset(0.6px);
-  }
-} */
-
 a,
 input,
 button {
@@ -27,5 +15,5 @@ body {
 
 /* Dark mode styles */
 .dark body {
-  @apply bg-gray-900 text-white;
+  @apply bg-gray-900 ;
 }

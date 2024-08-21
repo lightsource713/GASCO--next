@@ -4,11 +4,9 @@ import Price from 'components/price';
 import { DEFAULT_OPTION } from 'lib/constants';
 import type { Cart } from 'lib/ecwid/types';
 import { createUrl } from 'lib/utils';
-// import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment, useEffect, useRef, useState } from 'react';
-// import { useAppSelector } from 'store/store';
 import { useRouter } from 'next/navigation';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import CloseCart from './close-cart';
 import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
@@ -125,17 +123,6 @@ export default function CartModal({ cart }: { cart: Cart  }) {
                               className="z-30 flex flex-row space-x-4"
                             >
                               <div className="relative h-16 w-16 cursor-pointer overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
-                                {/* <Image
-                                  className="h-full w-full object-cover"
-                                  width={64}
-                                  height={64}
-                                  alt={
-                                    item.merchandise.product.featuredImage.altText ||
-                                    item.merchandise.product.title
-                                  }
-                                  src={item.merchandise.product.featuredImage.url}
-                                  priority
-                                /> */}
                                 <img
                                   src={item.merchandise.product.featuredImage.url}
                                   alt={

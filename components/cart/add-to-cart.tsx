@@ -27,8 +27,6 @@ function SubmitButton({
   product: Product;
   setSelectedOptions: (value: SelectedOptions[]) => void;
 }) {
-  // const cart = useAppSelector((state) => state.cart.productsInCart);
-  // const { pending } = useFormStatus();
   const buttonClasses =
     'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white';
   const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
@@ -66,22 +64,18 @@ function SubmitButton({
      if (variant) {
       return true
     }else return false
-    // const variant = variants.find(item=>{
-    //   const combination = selectedOptions.map(option=>{
-    //     return option.value
-    //   })
-    //   return JSON.stringify(item.selectedOptions) === JSON.stringify(combination)
-    // })
-    // if (variant){
-    //   return true
-    // }else return false
   }
 
   const addProduct = () => {
     setSelectedOptions([])
+    const combination = selectedOptions.map(option=>{
+      return option.value
+    })
     const variant = variants.find(item=>{
-      const combination = [{name:selectedOptions[0]?.name,value:selectedOptions[0]?.value},{name:selectedOptions[1]?.name,value:selectedOptions[1]?.value}]
-      return JSON.stringify(item.selectedOptions) === JSON.stringify(combination)
+      const variantComibination = item.selectedOptions.map(option=>{
+        return option.value
+      })
+      return haveSameElements(combination,variantComibination)
     })
     // if (pending) e.preventDefault();
     const optionData = selectedOptions.map((option) => {
@@ -162,7 +156,6 @@ function SubmitButton({
     >
       <div className="absolute left-0 ml-4">
         <PlusIcon className="h-5" />
-        {/* {pending ? <LoadingDots className="mb-3 bg-white" /> : <PlusIcon className="h-5" />} */}
       </div>
       Add To Cart
     </button>
@@ -190,10 +183,8 @@ export function AddToCart({
     )
   );
   const selectedVariantId = variant?.id || defaultVariantId;
-  // const actionWithVariant = formAction.bind(null, selectedVariantId);
 
   return (
-    // <form action={actionWithVariant}>
     <>
       <SubmitButton
         availableForSale={availableForSale}
@@ -204,6 +195,5 @@ export function AddToCart({
         setSelectedOptions={setSelectedOptions}
       />
     </>
-    // </form>
   );
 }

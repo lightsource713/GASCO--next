@@ -1,6 +1,5 @@
-import React from 'react';
-// import { confirmPayment } from 'store/payment/payment';
 import { useRouter } from 'next/navigation';
+import React from 'react';
 
 interface Product {
   id: number;
@@ -20,13 +19,6 @@ const ProductListModal: React.FC<ProductListModalProps> = ({ show, onClose, prod
   if (!show) return null;
   const router = useRouter();
 
-//   const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
-//     const target = e.target as HTMLElement;
-//     if (target.id === "modal") {
-//       onClose();
-//     }
-//   };
-
   const getTotalInfo = ()=>{
     let totalCount =0
     let totalPrice =0
@@ -44,7 +36,6 @@ const ProductListModal: React.FC<ProductListModalProps> = ({ show, onClose, prod
 
   const handlePayment = ()=>{
     router.push('/pos')
-    // dispatch(confirmPayment(products))
   }
 
 

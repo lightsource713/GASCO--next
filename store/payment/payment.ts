@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { Cart } from 'lib/ecwid/types';
 
 const initialState = {
   isConfirmed:false

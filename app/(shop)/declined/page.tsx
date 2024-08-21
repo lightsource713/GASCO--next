@@ -8,13 +8,6 @@ export default function Declined() {
           Card Declined.
         </h1>
         <div className="relative mt-10 h-32 w-32">
-          {/* <Image 
-            src="/assets/images/declined.png" 
-            alt="Declined" 
-            fill
-            className="object-contain"
-            priority
-          /> */}
           <img
             src="/assets/images/declined.png"
             alt="Declined"

@@ -8,7 +8,6 @@ export default function POSCardSwipe() {
   const storePayment = useAppSelector((state) => state.payment);
   const router = useRouter();
   const dispatch = useAppDispatch();
-  console.log(storePayment);
   useEffect(() => {
     dispatch(confirmPayment('TestPayment'));
   }, [dispatch]);
@@ -31,14 +30,6 @@ export default function POSCardSwipe() {
           Please follow instruction on the POS card swipe.
         </h1>
         <div className="relative h-32 w-32">
-          {/* <Image 
-            src="/assets/images/pos.png" 
-            alt="POS Card Swipe" 
-            fill
-            className="object-contain"
-            priority
-            sizes="(max-width: 640px) 100vw, 36px"
-          /> */}
           <img
             src="/assets/images/pos.png"
             alt="POS Card Swipe"

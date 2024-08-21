@@ -52,9 +52,6 @@ export function EditItemQuantityButton({ item, type }: { item: CartItem; type: '
         <MinusIcon className="h-4 w-4 dark:text-neutral-500" onClick={()=>handleEditQuantity("minus",sendingData)}/>
       )}
     </button>
-      {/* <p aria-live="polite" className="sr-only" role="status">
-        {message}
-      </p> */}
     </>
   );
 }
